@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Members - ECO ART RWANDA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2d602d;
+            --secondary-color: #4CAF50;
+            --accent-color: #e74c3c;
+            --light-color: #f9f9f9;
+            --dark-color: #333;
+            --text-color: #444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: #e8f5e9;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #e8f5e9;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e8f5e9;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Members Navigation */
+        .members-nav {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .members-nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .member-nav-btn {
+            padding: 12px 24px;
+            background: var(--light-color);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .member-nav-btn.active, .member-nav-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            background: white;
+            padding: 2rem 0;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+
+        /* Members Section */
+        .members-section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-header {
+            position: relative;
+        }
+
+        .member-avatar {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-role {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 15px;
+            font-weight: 500;
+        }
+
+        .member-content {
+            padding: 2rem;
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .member-location {
+            color: #666;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .member-bio {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .member-skills {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .skill-tag {
+            background: var(--light-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .member-contact {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .member-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .facebook { background: #3b5998; }
+        .instagram { background: #e4405f; }
+        .twitter { background: #1da1f2; }
+        .linkedin { background: #0077b5; }
+        .youtube { background: #cd201f; }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Join Section */
+        .join-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .join-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .join-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .members-nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .member-nav-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .filter-container {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>ECO ART RWANDA</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="members.html" class="active">Members</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="register.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Members</h1>
+            <p>Meet the talented artists, artisans, and environmental advocates who form the heart of ECO ART RWANDA.</p>
+        </div>
+    </section>
+
+    <!-- Members Navigation -->
+    <section class="members-nav">
+        <div class="container">
+            <div class="members-nav-container">
+                <button class="member-nav-btn active" data-category="all">
+                    <i class="fas fa-th"></i> All Members
+                </button>
+                <button class="member-nav-btn" data-category="artists">
+                    <i class="fas fa-paint-brush"></i> Artists
+                </button>
+                <button class="member-nav-btn" data-category="artisans">
+                    <i class="fas fa-hands"></i> Artisans
+                </button>
+                <button class="member-nav-btn" data-category="leaders">
+                    <i class="fas fa-users"></i> Team Leaders
+                </button>
+                <button class="member-nav-btn" data-category="volunteers">
+                    <i class="fas fa-heart"></i> Volunteers
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="search-filter">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="memberSearch" placeholder="Search members by name, skill, or location...">
+                </div>
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            
+            <div class="filter-container">
+                <select class="filter-select" id="locationFilter">
+                    <option value="">All Locations</option>
+                    <option value="kigali">Kigali</option>
+                    <option value="northern">Northern Province</option>
+                    <option value="southern">Southern Province</option>
+                    <option value="eastern">Eastern Province</option>
+                    <option value="western">Western Province</option>
+                </select>
+                
+                <select class="filter-select" id="skillFilter">
+                    <option value="">All Skills</option>
+                    <option value="painting">Painting</option>
+                    <option value="sculpture">Sculpture</option>
+                    <option value="weaving">Weaving</option>
+                    <option value="pottery">Pottery</option>
+                    <option value="upcycling">Upcycling</option>
+                    <option value="education">Education</option>
+                    <option value="marketing">Marketing</option>
+                </select>
+                
+                <select class="filter-select" id="experienceFilter">
+                    <option value="">All Experience Levels</option>
+                    <option value="beginner">Beginner (0-2 years)</option>
+                    <option value="intermediate">Intermediate (2-5 years)</option>
+                    <option value="advanced">Advanced (5+ years)</option>
+                    <option value="expert">Expert (10+ years)</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section class="members-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Community</h2>
+                <p>Discover the diverse talents and backgrounds of our ECO ART RWANDA members.</p>
+            </div>
+            
+            <div class="members-grid" id="membersGrid">
+                <!-- Member 1 -->
+                <div class="member-card" data-category="leaders" data-location="kigali" data-skill="painting,education" data-experience="expert">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-role">Founder & Lead Artist</div>
+                    </div>
+                    <div class="member-content">
+                        <h3 class="member-name">Mbarushimana Muhamadi</h3>
+                        <div class="member-location">
+                            <i class="fas fa-map-marker-alt"></i> Kigali, Rwanda
+                        </div>
+                        <p class="member-bio">
+                            Visionary artist with over 15 years of experience in sustainable art practices. Passionate about merging traditional Rwandan techniques with contemporary eco-art.
+                        </p>
+                        <div class="member-skills">
+                            <div class="skills-title">Skills & Specialties:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Painting</span>
+                                <span class="skill-tag">Sculpture</span>
+                                <span class="skill-tag">Education</span>
+                                <span class="skill-tag">Leadership</span>
+                            </div>
+                        </div>
+                        <div class="member-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i> muhamadi.mbarushimana@ecoart.rw
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i> +250 78 234 5678
+                            </div>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 2 -->
+                <div class="member-card" data-category="artists" data-location="kigali" data-skill="painting,drawing" data-experience="advanced">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-role">Digital Artist</div>
+                    </div>
+                    <div class="member-content">
+                        <h3 class="member-name">DUSABIMANA Ivan Landry</h3>
+                        <div class="member-location">
+                            <i class="fas fa-map-marker-alt"></i> Kigali, Rwanda
+                        </div>
+                        <p class="member-bio">
+                            Digital artist specializing in environmental themes. Creates stunning digital illustrations that raise awareness about conservation issues.
+                        </p>
+                        <div class="member-skills">
+                            <div class="skills-title">Skills & Specialties:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Digital Art</span>
+                                <span class="skill-tag">Illustration</span>
+                                <span class="skill-tag">Graphic Design</span>
+                                <span class="skill-tag">Animation</span>
+                            </div>
+                        </div>
+                        <div class="member-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i> ivan.landry@ecoart.rw
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i> +250 78 345 6789
+                            </div>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon youtube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 3 -->
+                <div class="member-card" data-category="artisans" data-location="northern" data-skill="weaving,pottery" data-experience="expert">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-role">Master Craftsman</div>
+                    </div>
+                    <div class="member-content">
+                        <h3 class="member-name">Dusenge Martin</h3>
+                        <div class="member-location">
+                            <i class="fas fa-map-marker-alt"></i> Northern Province, Rwanda
+                        </div>
+                        <p class="member-bio">
+                            Third-generation artisan specializing in traditional Rwandan weaving techniques. Creates beautiful baskets and textiles using sustainable materials.
+                        </p>
+                        <div class="member-skills">
+                            <div class="skills-title">Skills & Specialties:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Weaving</span>
+                                <span class="skill-tag">Basket Making</span>
+                                <span class="skill-tag">Textile Art</span>
+                                <span class="skill-tag">Natural Dyes</span>
+                            </div>
+                        </div>
+                        <div class="member-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i> martin.dusenge@ecoart.rw
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i> +250 78 456 7890
+                            </div>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 4 -->
+                <div class="member-card" data-category="leaders" data-location="kigali" data-skill="marketing,storytelling" data-experience="advanced">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-role">Marketing Director</div>
+                    </div>
+                    <div class="member-content">
+                        <h3 class="member-name">Bizimana Adam</h3>
+                        <div class="member-location">
+                            <i class="fas fa-map-marker-alt"></i> Kigali, Rwanda
+                        </div>
+                        <p class="member-bio">
+                            Marketing expert and storyteller who amplifies the voices of Rwandan eco-artists. Creates compelling narratives that connect art with environmental action.
+                        </p>
+                        <div class="member-skills">
+                            <div class="skills-title">Skills & Specialties:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Marketing</span>
+                                <span class="skill-tag">Storytelling</span>
+                                <span class="skill-tag">Content Creation</span>
+                                <span class="skill-tag">Social Media</span>
+                            </div>
+                        </div>
+                        <div class="member-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i> adam.bizimana@ecoart.rw
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i> +250 78 123 4567
+                            </div>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 5 -->
+                <div class="member-card" data-category="artisans" data-location="western" data-skill="upcycling,sculpture" data-experience="intermediate">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-role">Upcycling Specialist</div>
+                    </div>
+                    <div class="member-content">
+                        <h3 class="member-name">NZABAHIMANA Wilson</h3>
+                        <div class="member-location">
+                            <i class="fas fa-map-marker-alt"></i> Western Province, Rwanda
+                        </div>
+                        <p class="member-bio">
+                            Creative upcycler who transforms discarded materials into beautiful sculptures and functional art. Passionate about reducing waste through artistic expression.
+                        </p>
+                        <div class="member-skills">
+                            <div class="skills-title">Skills & Specialties:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Upcycling</span>
+                                <span class="skill-tag">Sculpture</span>
+                                <span class="skill-tag">Jewelry Making</span>
+                                <span class="skill-tag">Metal Work</span>
+                            </div>
+                        </div>
+                        <div class="member-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i> wilson.nzabahimana@ecoart.rw
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i> +250 78 567 8901
+                            </div>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 6 -->
+                <div class="member-card" data-category="volunteers" data-location="southern" data-skill="education,community" data-experience="intermediate">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-role">Community Coordinator</div>
+                    </div>
+                    <div class="member-content">
+                        <h3 class="member-name">Niyomugenga Salve</h3>
+                        <div class="member-location">
+                            <i class="fas fa-map-marker-alt"></i> Southern Province, Rwanda
+                        </div>
+                        <p class="member-bio">
+                            Dedicated community organizer who connects ECO ART RWANDA with local communities. Facilitates workshops and builds partnerships for sustainable art initiatives.
+                        </p>
+                        <div class="member-skills">
+                            <div class="skills-title">Skills & Specialties:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Community Outreach</span>
+                                <span class="skill-tag">Workshop Facilitation</span>
+                                <span class="skill-tag">Partnership Building</span>
+                                <span class="skill-tag">Event Planning</span>
+                            </div>
+                        </div>
+                        <div class="member-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i> salve.niyomugenga@ecoart.rw
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i> +250 78 678 9012
+                            </div>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Community in Numbers</h2>
+                <p>The impact and reach of our growing ECO ART RWANDA community.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number">89</div>
+                    <div class="stat-label">Active Members</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Communities Reached</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Art Pieces Created</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div class="stat-number">1,000+</div>
+                    <div class="stat-label">Trees Planted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section class="join-section">
+        <div class="container">
+            <h2>Join Our Creative Community</h2>
+            <p>Become part of ECO ART RWANDA and connect with fellow artists, artisans, and environmental advocates. Together, we're creating a more sustainable future through art.</p>
+            <a href="register.html" class="btn btn-primary btn-large">
+                <i class="fas fa-user-plus"></i> Become a Member
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ECO ART RWANDA</h3>
+                    <p>Connecting art, nature, and community to create a sustainable future through creative expression.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="members.html">Our Members</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Member Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Member Directory</a></li>
+                        <li><a href="#">Skill Sharing</a></li>
+                        <li><a href="#">Collaboration Opportunities</a></li>
+                        <li><a href="#">Events Calendar</a></li>
+                        <li><a href="#">Member Forum</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</li>
+                        <li><i class="fas fa-phone"></i> +250 788 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@ecoartrwanda.org</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ECO ART RWANDA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const authButtons = document.querySelector('.auth-buttons');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            authButtons.classList.toggle('active');
+            
+            // Toggle menu icon
+            const icon = mobileMenu.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Member category filtering
+        const memberNavBtns = document.querySelectorAll('.member-nav-btn');
+        const memberCards = document.querySelectorAll('.member-card');
+        
+        memberNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                memberNavBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-category');
+                
+                if (category === 'all') {
+                    // Show all members
+                    memberCards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                } else {
+                    // Show only selected category
+                    memberCards.forEach(card => {
+                        if (card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('memberSearch');
+        
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            memberCards.forEach(card => {
+                const name = card.querySelector('.member-name').textContent.toLowerCase();
+                const bio = card.querySelector('.member-bio').textContent.toLowerCase();
+                const skills = card.querySelector('.skills-list').textContent.toLowerCase();
+                const location = card.querySelector('.member-location').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || bio.includes(searchTerm) || 
+                    skills.includes(searchTerm) || location.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Filter functionality
+        const locationFilter = document.getElementById('locationFilter');
+        const skillFilter = document.getElementById('skillFilter');
+        const experienceFilter = document.getElementById('experienceFilter');
+        
+        function applyFilters() {
+            const locationValue = locationFilter.value;
+            const skillValue = skillFilter.value;
+            const experienceValue = experienceFilter.value;
+            
+            memberCards.forEach(card => {
+                const cardLocation = card.getAttribute('data-location');
+                const cardSkills = card.getAttribute('data-skill');
+                const cardExperience = card.getAttribute('data-experience');
+                
+                const locationMatch = !locationValue || cardLocation.includes(locationValue);
+                const skillMatch = !skillValue || cardSkills.includes(skillValue);
+                const experienceMatch = !experienceValue || cardExperience === experienceValue;
+                
+                if (locationMatch && skillMatch && experienceMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        locationFilter.addEventListener('change', applyFilters);
+        skillFilter.addEventListener('change', applyFilters);
+        experienceFilter.addEventListener('change', applyFilters);
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.member-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

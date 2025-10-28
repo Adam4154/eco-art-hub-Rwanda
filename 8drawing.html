@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations - ECO ART RWANDA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2d602d;
+            --secondary-color: #4CAF50;
+            --accent-color: #e74c3c;
+            --light-color: #f9f9f9;
+            --dark-color: #333;
+            --text-color: #444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: #e8f5e9;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #e8f5e9;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e8f5e9;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2056&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Recommendation Tabs */
+        .recommendation-tabs {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: var(--light-color);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Recommendation Forms Section */
+        .recommendation-forms {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+
+        .form-header-text h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .form-header-text p {
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Community Suggestions */
+        .community-suggestions {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .suggestion-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .suggestion-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .suggestion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .suggestion-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .suggestion-category {
+            background: var(--light-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .suggestion-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .suggestion-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .suggestion-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .author-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .suggestion-stats {
+            display: flex;
+            gap: 15px;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .stat i {
+            color: var(--secondary-color);
+        }
+
+        .suggestion-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-under-review {
+            background: #fff4e5;
+            color: #cc8a00;
+        }
+
+        .status-planned {
+            background: #e5f3ff;
+            color: #0066cc;
+        }
+
+        .status-implemented {
+            background: #e7f4e4;
+            color: #2d602d;
+        }
+
+        /* Voting Section */
+        .voting-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .voting-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .voting-card {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .voting-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .voting-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+
+        .voting-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .vote-stat {
+            text-align: center;
+        }
+
+        .vote-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .vote-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .voting-progress {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--secondary-color);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .voting-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .vote-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .vote-up {
+            background: #e7f4e4;
+            color: #2d602d;
+        }
+
+        .vote-up:hover, .vote-up.voted {
+            background: #2d602d;
+            color: white;
+        }
+
+        .vote-down {
+            background: #fde8e8;
+            color: #e74c3c;
+        }
+
+        .vote-down:hover, .vote-down.voted {
+            background: #e74c3c;
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .tabs-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .suggestions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .voting-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .voting-stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>ECO ART RWANDA</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="members.html">Members</a></li>
+                    <li><a href="books.html">Books & Stories</a></li>
+                    <li><a href="crafts.html">Crafts</a></li>
+                    <li><a href="drawings.html">Drawings</a></li>
+                    <li><a href="recommendations.html" class="active">Recommendations</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="register.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Share Your Ideas</h1>
+            <p>Help shape the future of ECO ART RWANDA by recommending new products, programs, and improvements. Your voice matters!</p>
+        </div>
+    </section>
+
+    <!-- Recommendation Tabs -->
+    <section class="recommendation-tabs">
+        <div class="container">
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="product">
+                    <i class="fas fa-lightbulb"></i> Product Idea
+                </button>
+                <button class="tab-btn" data-tab="program">
+                    <i class="fas fa-calendar-alt"></i> Program Suggestion
+                </button>
+                <button class="tab-btn" data-tab="improvement">
+                    <i class="fas fa-tools"></i> Improvement
+                </button>
+                <button class="tab-btn" data-tab="collaboration">
+                    <i class="fas fa-handshake"></i> Collaboration
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendation Forms Section -->
+    <section class="recommendation-forms">
+        <div class="container">
+            <div class="section-title">
+                <h2>Make a Recommendation</h2>
+                <p>Share your ideas with our community. We value your input and will carefully consider all suggestions.</p>
+            </div>
+            
+            <!-- Product Recommendation Form -->
+            <div class="form-container active" id="productForm">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="form-header-text">
+                        <h3>Product Recommendation</h3>
+                        <p>Suggest a new eco-friendly product for our marketplace</p>
+                    </div>
+                </div>
+                
+                <form id="productRecommendationForm">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" placeholder="Enter product name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productCategory">Product Category</label>
+                        <select id="productCategory" required>
+                            <option value="">Select category</option>
+                            <option value="crafts">Crafts</option>
+                            <option value="artwork">Artwork</option>
+                            <option value="books">Books & Stories</option>
+                            <option value="textiles">Textiles</option>
+                            <option value="jewelry">Jewelry</option>
+                            <option value="home-decor">Home Decor</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productDescription">Product Description</label>
+                        <textarea id="productDescription" placeholder="Describe the product, its purpose, and why it would be valuable..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="targetAudience">Target Audience</label>
+                            <select id="targetAudience" required>
+                                <option value="">Select audience</option>
+                                <option value="children">Children</option>
+                                <option value="teens">Teens</option>
+                                <option value="adults">Adults</option>
+                                <option value="families">Families</option>
+                                <option value="tourists">Tourists</option>
+                                <option value="all">All Ages</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="suggestedPrice">Suggested Price ($)</label>
+                            <input type="number" id="suggestedPrice" placeholder="Enter suggested price" min="0" step="0.01">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sustainabilityAspects">Sustainability Aspects</label>
+                        <textarea id="sustainabilityAspects" placeholder="How is this product eco-friendly? What sustainable materials or processes would be used?"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-small">
+                            <i class="fas fa-paper-plane"></i> Submit Recommendation
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-small">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Program Recommendation Form -->
+            <div class="form-container" id="programForm">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="form-header-text">
+                        <h3>Program Suggestion</h3>
+                        <p>Recommend a new workshop, event, or educational program</p>
+                    </div>
+                </div>
+                
+                <form id="programRecommendationForm">
+                    <div class="form-group">
+                        <label for="programName">Program Name</label>
+                        <input type="text" id="programName" placeholder="Enter program name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="programType">Program Type</label>
+                        <select id="programType" required>
+                            <option value="">Select type</option>
+                            <option value="workshop">Workshop</option>
+                            <option value="course">Course</option>
+                            <option value="event">Community Event</option>
+                            <option value="exhibition">Exhibition</option>
+                            <option value="competition">Competition</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="programDescription">Program Description</label>
+                        <textarea id="programDescription" placeholder="Describe the program, its objectives, and expected outcomes..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="targetParticipants">Target Participants</label>
+                            <select id="targetParticipants" required>
+                                <option value="">Select participants</option>
+                                <option value="children">Children</option>
+                                <option value="youth">Youth</option>
+                                <option value="adults">Adults</option>
+                                <option value="seniors">Seniors</option>
+                                <option value="artists">Artists</option>
+                                <option value="community">Community Members</option>
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="programDuration">Estimated Duration</label>
+                            <select id="programDuration" required>
+                                <option value="">Select duration</option>
+                                <option value="single">Single Session</option>
+                                <option value="weekly">Weekly (4-6 weeks)</option>
+                                <option value="monthly">Monthly Series</option>
+                                <option value="ongoing">Ongoing</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="programBenefits">Expected Benefits</label>
+                        <textarea id="programBenefits" placeholder="How will this program benefit participants and the community?"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-small">
+                            <i class="fas fa-paper-plane"></i> Submit Suggestion
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-small">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Improvement Recommendation Form -->
+            <div class="form-container" id="improvementForm">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="form-header-text">
+                        <h3>Improvement Suggestion</h3>
+                        <p>Suggest ways we can improve our services, website, or community engagement</p>
+                    </div>
+                </div>
+                
+                <form id="improvementRecommendationForm">
+                    <div class="form-group">
+                        <label for="improvementArea">Area for Improvement</label>
+                        <select id="improvementArea" required>
+                            <option value="">Select area</option>
+                            <option value="website">Website/Platform</option>
+                            <option value="products">Products/Services</option>
+                            <option value="communication">Communication</option>
+                            <option value="events">Events/Programs</option>
+                            <option value="community">Community Engagement</option>
+                            <option value="sustainability">Sustainability Practices</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="improvementTitle">Suggestion Title</label>
+                        <input type="text" id="improvementTitle" placeholder="Brief title for your suggestion" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="currentSituation">Current Situation</label>
+                        <textarea id="currentSituation" placeholder="Describe the current situation or problem..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="proposedSolution">Proposed Solution</label>
+                        <textarea id="proposedSolution" placeholder="Describe your proposed solution or improvement..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expectedImpact">Expected Impact</label>
+                        <textarea id="expectedImpact" placeholder="How will this improvement benefit our community and organization?"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-small">
+                            <i class="fas fa-paper-plane"></i> Submit Suggestion
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-small">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Collaboration Recommendation Form -->
+            <div class="form-container" id="collaborationForm">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="form-header-text">
+                        <h3>Collaboration Idea</h3>
+                        <p>Suggest a partnership or collaboration opportunity</p>
+                    </div>
+                </div>
+                
+                <form id="collaborationRecommendationForm">
+                    <div class="form-group">
+                        <label for="collaborationType">Collaboration Type</label>
+                        <select id="collaborationType" required>
+                            <option value="">Select type</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="sponsorship">Sponsorship</option>
+                            <option value="event">Event Collaboration</option>
+                            <option value="project">Project Collaboration</option>
+                            <option value="knowledge">Knowledge Sharing</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collaborationTitle">Collaboration Title</label>
+                        <input type="text" id="collaborationTitle" placeholder="Enter collaboration title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="potentialPartner">Potential Partner (if any)</label>
+                        <input type="text" id="potentialPartner" placeholder="Organization, community group, or individual">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collaborationDescription">Collaboration Description</label>
+                        <textarea id="collaborationDescription" placeholder="Describe the collaboration opportunity, goals, and potential benefits..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expectedOutcomes">Expected Outcomes</label>
+                        <textarea id="expectedOutcomes" placeholder="What do you hope to achieve through this collaboration?"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-small">
+                            <i class="fas fa-paper-plane"></i> Submit Idea
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-small">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Suggestions -->
+    <section class="community-suggestions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Community Suggestions</h2>
+                <p>See what other community members are recommending and show your support for ideas you like.</p>
+            </div>
+            
+            <div class="suggestions-grid">
+                <!-- Suggestion 1 -->
+                <div class="suggestion-card">
+                    <div class="suggestion-status status-under-review">Under Review</div>
+                    <div class="suggestion-header">
+                        <div>
+                            <h4 class="suggestion-title">Eco-Friendly Art Supplies Kit</h4>
+                            <span class="suggestion-category">Product Idea</span>
+                        </div>
+                    </div>
+                    <p class="suggestion-description">A starter kit with sustainable art materials like plant-based paints, recycled paper, and natural brushes for beginners interested in eco-art.</p>
+                    <div class="suggestion-meta">
+                        <div class="suggestion-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span>Claude U.</span>
+                        </div>
+                        <div class="suggestion-stats">
+                            <div class="stat">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span>24</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-comment"></i>
+                                <span>8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Suggestion 2 -->
+                <div class="suggestion-card">
+                    <div class="suggestion-status status-planned">Planned</div>
+                    <div class="suggestion-header">
+                        <div>
+                            <h4 class="suggestion-title">Community Mural Project</h4>
+                            <span class="suggestion-category">Program Suggestion</span>
+                        </div>
+                    </div>
+                    <p class="suggestion-description">A collaborative mural painting project where community members create a large eco-themed artwork in a public space using sustainable paints.</p>
+                    <div class="suggestion-meta">
+                        <div class="suggestion-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span>Marie A.</span>
+                        </div>
+                        <div class="suggestion-stats">
+                            <div class="stat">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span>42</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-comment"></i>
+                                <span>15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Suggestion 3 -->
+                <div class="suggestion-card">
+                    <div class="suggestion-status status-implemented">Implemented</div>
+                    <div class="suggestion-header">
+                        <div>
+                            <h4 class="suggestion-title">Mobile App for Artists</h4>
+                            <span class="suggestion-category">Improvement</span>
+                        </div>
+                    </div>
+                    <p class="suggestion-description">A mobile application that allows artists to manage their profiles, track sales, and connect with customers more easily while on the go.</p>
+                    <div class="suggestion-meta">
+                        <div class="suggestion-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span>David K.</span>
+                        </div>
+                        <div class="suggestion-stats">
+                            <div class="stat">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span>31</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-comment"></i>
+                                <span>12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voting Section -->
+    <section class="voting-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Vote on Popular Suggestions</h2>
+                <p>Help us prioritize which ideas to implement by voting for your favorites.</p>
+            </div>
+            
+            <div class="voting-container">
+                <!-- Voting Item 1 -->
+                <div class="voting-card">
+                    <div class="voting-header">
+                        <h3 class="voting-title">Monthly Eco-Art Competition</h3>
+                        <div class="voting-stats">
+                            <div class="vote-stat">
+                                <div class="vote-number">78%</div>
+                                <div class="vote-label">Support</div>
+                            </div>
+                            <div class="vote-stat">
+                                <div class="vote-number">156</div>
+                                <div class="vote-label">Votes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voting-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <p>A monthly themed art competition with eco-friendly categories and prizes to encourage sustainable art creation.</p>
+                    <div class="voting-actions">
+                        <button class="vote-btn vote-up">
+                            <i class="fas fa-thumbs-up"></i> Support This Idea
+                        </button>
+                        <button class="vote-btn vote-down">
+                            <i class="fas fa-thumbs-down"></i> Not Interested
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Voting Item 2 -->
+                <div class="voting-card">
+                    <div class="voting-header">
+                        <h3 class="voting-title">Artisan Mentorship Program</h3>
+                        <div class="voting-stats">
+                            <div class="vote-stat">
+                                <div class="vote-number">92%</div>
+                                <div class="vote-label">Support</div>
+                            </div>
+                            <div class="vote-stat">
+                                <div class="vote-number">203</div>
+                                <div class="vote-label">Votes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voting-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <p>Experienced artisans mentor newcomers, sharing traditional techniques and sustainable practices to preserve cultural heritage.</p>
+                    <div class="voting-actions">
+                        <button class="vote-btn vote-up">
+                            <i class="fas fa-thumbs-up"></i> Support This Idea
+                        </button>
+                        <button class="vote-btn vote-down">
+                            <i class="fas fa-thumbs-down"></i> Not Interested
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Voting Item 3 -->
+                <div class="voting-card">
+                    <div class="voting-header">
+                        <h3 class="voting-title">Digital Art Marketplace</h3>
+                        <div class="voting-stats">
+                            <div class="vote-stat">
+                                <div class="vote-number">65%</div>
+                                <div class="vote-label">Support</div>
+                            </div>
+                            <div class="vote-stat">
+                                <div class="vote-number">118</div>
+                                <div class="vote-label">Votes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voting-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <p>A dedicated section for digital art and NFTs with a focus on environmental themes and carbon-neutral transactions.</p>
+                    <div class="voting-actions">
+                        <button class="vote-btn vote-up">
+                            <i class="fas fa-thumbs-up"></i> Support This Idea
+                        </button>
+                        <button class="vote-btn vote-down">
+                            <i class="fas fa-thumbs-down"></i> Not Interested
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Your Ideas Shape Our Future</h2>
+            <p>Join our community of innovators and help us create a more sustainable and creative Rwanda through your valuable suggestions.</p>
+            <a href="register.html" class="btn btn-primary btn-large">
+                <i class="fas fa-user-plus"></i> Join Our Community
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ECO ART RWANDA</h3>
+                    <p>Connecting art, nature, and community to create a sustainable future through creative expression.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="members.html">Our Members</a></li>
+                        <li><a href="recommendations.html">Recommendations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Recommendation Types</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Product Ideas</a></li>
+                        <li><a href="#">Program Suggestions</a></li>
+                        <li><a href="#">Improvements</a></li>
+                        <li><a href="#">Collaborations</a></li>
+                        <li><a href="#">Community Voting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</li>
+                        <li><i class="fas fa-phone"></i> +250 788 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@ecoartrwanda.org</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ECO ART RWANDA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const authButtons = document.querySelector('.auth-buttons');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            authButtons.classList.toggle('active');
+            
+            // Toggle menu icon
+            const icon = mobileMenu.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const formContainers = document.querySelectorAll('.form-container');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and forms
+                tabBtns.forEach(b => b.classList.remove('active'));
+                formContainers.forEach(f => f.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding form
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(`${tabId}Form`).classList.add('active');
+            });
+        });
+        
+        // Form submission handlers
+        const productForm = document.getElementById('productRecommendationForm');
+        const programForm = document.getElementById('programRecommendationForm');
+        const improvementForm = document.getElementById('improvementRecommendationForm');
+        const collaborationForm = document.getElementById('collaborationRecommendationForm');
+        
+        productForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const productName = document.getElementById('productName').value;
+            alert(`Thank you for your product recommendation: "${productName}"! Our team will review your suggestion.`);
+            this.reset();
+        });
+        
+        programForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const programName = document.getElementById('programName').value;
+            alert(`Thank you for your program suggestion: "${programName}"! Our team will review your idea.`);
+            this.reset();
+        });
+        
+        improvementForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const improvementTitle = document.getElementById('improvementTitle').value;
+            alert(`Thank you for your improvement suggestion: "${improvementTitle}"! We appreciate your input.`);
+            this.reset();
+        });
+        
+        collaborationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const collaborationTitle = document.getElementById('collaborationTitle').value;
+            alert(`Thank you for your collaboration idea: "${collaborationTitle}"! Our team will review your proposal.`);
+            this.reset();
+        });
+        
+        // Voting functionality
+        const voteButtons = document.querySelectorAll('.vote-btn');
+        
+        voteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const votingCard = this.closest('.voting-card');
+                const voteUpButtons = votingCard.querySelectorAll('.vote-up');
+                const voteDownButtons = votingCard.querySelectorAll('.vote-down');
+                
+                if (this.classList.contains('vote-up')) {
+                    // If already voted up, remove vote
+                    if (this.classList.contains('voted')) {
+                        this.classList.remove('voted');
+                        updateVoteStats(votingCard, -1);
+                    } else {
+                        // Remove any existing votes
+                        voteUpButtons.forEach(btn => btn.classList.remove('voted'));
+                        voteDownButtons.forEach(btn => btn.classList.remove('voted'));
+                        
+                        // Add vote up
+                        this.classList.add('voted');
+                        updateVoteStats(votingCard, 1);
+                    }
+                } else if (this.classList.contains('vote-down')) {
+                    // If already voted down, remove vote
+                    if (this.classList.contains('voted')) {
+                        this.classList.remove('voted');
+                        updateVoteStats(votingCard, 1);
+                    } else {
+                        // Remove any existing votes
+                        voteUpButtons.forEach(btn => btn.classList.remove('voted'));
+                        voteDownButtons.forEach(btn => btn.classList.remove('voted'));
+                        
+                        // Add vote down
+                        this.classList.add('voted');
+                        updateVoteStats(votingCard, -1);
+                    }
+                }
+            });
+        });
+        
+        function updateVoteStats(votingCard, change) {
+            const voteNumber = votingCard.querySelector('.vote-number');
+            const progressFill = votingCard.querySelector('.progress-fill');
+            
+            // Get current values
+            let currentVotes = parseInt(votingCard.querySelector('.vote-stat:last-child .vote-number').textContent);
+            let currentSupport = parseInt(progressFill.style.width);
+            
+            // Update values
+            currentVotes = Math.max(0, currentVotes + change);
+            currentSupport = Math.max(0, Math.min(100, currentSupport + change));
+            
+            // Update display
+            votingCard.querySelector('.vote-stat:last-child .vote-number').textContent = currentVotes;
+            voteNumber.textContent = `${currentSupport}%`;
+            progressFill.style.width = `${currentSupport}%`;
+        }
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.suggestion-card, .voting-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

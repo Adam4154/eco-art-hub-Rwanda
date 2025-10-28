@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books & Stories - ECO ART RWANDA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2d602d;
+            --secondary-color: #4CAF50;
+            --accent-color: #e74c3c;
+            --light-color: #f9f9f9;
+            --dark-color: #333;
+            --text-color: #444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: #e8f5e9;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #e8f5e9;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e8f5e9;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Books Navigation */
+        .books-nav {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .books-nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .book-nav-btn {
+            padding: 12px 24px;
+            background: var(--light-color);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-nav-btn.active, .book-nav-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            background: white;
+            padding: 2rem 0;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+
+        /* Books Section */
+        .books-section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .book-cover {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .book-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            line-height: 1.3;
+        }
+
+        .book-author {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .book-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .book-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .book-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .book-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .book-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-small {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Reading Modal */
+        .reading-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .reading-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .story-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .story-content h2 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            background: var(--light-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reading-controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .reading-progress {
+            flex: 1;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #ddd;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--secondary-color);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        /* Featured Stories */
+        .featured-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .featured-stories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .featured-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .featured-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Add Story Section */
+        .add-story-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .add-story-form {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .books-nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .book-nav-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .filter-container {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .book-actions {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                margin: 1rem;
+            }
+
+            .reading-controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>ECO ART RWANDA</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="members.html">Members</a></li>
+                    <li><a href="books.html" class="active">Books & Stories</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="register.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Books & Stories</h1>
+            <p>Discover inspiring eco-literature and stories from Rwandan authors that celebrate nature, sustainability, and our connection to the environment.</p>
+        </div>
+    </section>
+
+    <!-- Books Navigation -->
+    <section class="books-nav">
+        <div class="container">
+            <div class="books-nav-container">
+                <button class="book-nav-btn active" data-category="all">
+                    <i class="fas fa-th"></i> All Stories
+                </button>
+                <button class="book-nav-btn" data-category="fiction">
+                    <i class="fas fa-book"></i> Fiction
+                </button>
+                <button class="book-nav-btn" data-category="non-fiction">
+                    <i class="fas fa-file-alt"></i> Non-Fiction
+                </button>
+                <button class="book-nav-btn" data-category="children">
+                    <i class="fas fa-child"></i> Children's Stories
+                </button>
+                <button class="book-nav-btn" data-category="poetry">
+                    <i class="fas fa-pen-fancy"></i> Poetry
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="search-filter">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="storySearch" placeholder="Search stories by title, author, or keywords...">
+                </div>
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            
+            <div class="filter-container">
+                <select class="filter-select" id="genreFilter">
+                    <option value="">All Genres</option>
+                    <option value="environment">Environmental</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="educational">Educational</option>
+                    <option value="cultural">Cultural</option>
+                    <option value="inspirational">Inspirational</option>
+                </select>
+                
+                <select class="filter-select" id="lengthFilter">
+                    <option value="">Any Length</option>
+                    <option value="short">Short Story (1-10 pages)</option>
+                    <option value="medium">Medium (11-30 pages)</option>
+                    <option value="long">Long (31+ pages)</option>
+                </select>
+                
+                <select class="filter-select" id="languageFilter">
+                    <option value="">All Languages</option>
+                    <option value="kinyarwanda">Kinyarwanda</option>
+                    <option value="english">English</option>
+                    <option value="french">French</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section class="books-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Stories</h2>
+                <p>Explore our collection of eco-stories that inspire environmental consciousness and celebrate Rwandan nature.</p>
+            </div>
+            
+            <div class="books-grid" id="booksGrid">
+                <!-- Story 1 -->
+                <div class="book-card" data-category="fiction" data-genre="environment" data-length="medium" data-language="english">
+                    <div class="book-cover">
+                        <i class="fas fa-book-open"></i>
+                        <div class="book-badge">Bestseller</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">Echoes of the Forest</h3>
+                        <div class="book-author">By Mbarushimana Muhamadi</div>
+                        <p class="book-description">A captivating tale of a young Rwandan girl's journey to save her village's ancient forest from destruction, discovering the wisdom of nature along the way.</p>
+                        <div class="book-meta">
+                            <div class="book-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>4.5</span>
+                            </div>
+                            <div class="book-length">24 pages</div>
+                        </div>
+                        <div class="book-price">$12.99</div>
+                        <div class="book-actions">
+                            <button class="btn btn-primary btn-small read-story" data-story="echoes">
+                                <i class="fas fa-eye"></i> Read
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Buy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story 2 -->
+                <div class="book-card" data-category="non-fiction" data-genre="educational" data-length="long" data-language="english">
+                    <div class="book-cover">
+                        <i class="fas fa-book-open"></i>
+                        <div class="book-badge">New</div>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">Colors of Rwanda</h3>
+                        <div class="book-author">By Bizimana Adam</div>
+                        <p class="book-description">A visual journey through Rwanda's diverse ecosystems, accompanied by stories from local communities about their relationship with the land.</p>
+                        <div class="book-meta">
+                            <div class="book-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>5.0</span>
+                            </div>
+                            <div class="book-length">48 pages</div>
+                        </div>
+                        <div class="book-price">$15.99</div>
+                        <div class="book-actions">
+                            <button class="btn btn-primary btn-small read-story" data-story="colors">
+                                <i class="fas fa-eye"></i> Read
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Buy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story 3 -->
+                <div class="book-card" data-category="children" data-genre="adventure" data-length="short" data-language="kinyarwanda">
+                    <div class="book-cover">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">The Little Seed's Journey</h3>
+                        <div class="book-author">By Niyomugenga Salve</div>
+                        <p class="book-description">A delightful children's story about a tiny seed's adventure through Rwanda's beautiful landscapes, teaching young readers about plant life cycles.</p>
+                        <div class="book-meta">
+                            <div class="book-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span>4.0</span>
+                            </div>
+                            <div class="book-length">12 pages</div>
+                        </div>
+                        <div class="book-price">$8.99</div>
+                        <div class="book-actions">
+                            <button class="btn btn-primary btn-small read-story" data-story="seed">
+                                <i class="fas fa-eye"></i> Read
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Buy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story 4 -->
+                <div class="book-card" data-category="poetry" data-genre="inspirational" data-length="short" data-language="english">
+                    <div class="book-cover">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">Whispers of the Land</h3>
+                        <div class="book-author">By Dusenge Martin</div>
+                        <p class="book-description">A collection of poignant poems that capture the beauty of Rwanda's natural world and the deep connection between people and their environment.</p>
+                        <div class="book-meta">
+                            <div class="book-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>4.5</span>
+                            </div>
+                            <div class="book-length">18 pages</div>
+                        </div>
+                        <div class="book-price">$10.99</div>
+                        <div class="book-actions">
+                            <button class="btn btn-primary btn-small read-story" data-story="whispers">
+                                <i class="fas fa-eye"></i> Read
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Buy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story 5 -->
+                <div class="book-card" data-category="non-fiction" data-genre="cultural" data-length="medium" data-language="english">
+                    <div class="book-cover">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">Sustainable Artistry</h3>
+                        <div class="book-author">By Iradukunda Manzi</div>
+                        <p class="book-description">Exploring traditional Rwandan art forms and their sustainable practices, with insights from master artisans preserving these eco-friendly techniques.</p>
+                        <div class="book-meta">
+                            <div class="book-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span>4.0</span>
+                            </div>
+                            <div class="book-length">32 pages</div>
+                        </div>
+                        <div class="book-price">$14.99</div>
+                        <div class="book-actions">
+                            <button class="btn btn-primary btn-small read-story" data-story="artistry">
+                                <i class="fas fa-eye"></i> Read
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Buy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story 6 -->
+                <div class="book-card" data-category="fiction" data-genre="adventure" data-length="long" data-language="french">
+                    <div class="book-cover">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">Guardians of the Volcano</h3>
+                        <div class="book-author">By DUSABIMANA Ivan Landry</div>
+                        <p class="book-description">An epic adventure set in the Virunga Mountains, where a group of young conservationists protect the endangered mountain gorillas from poachers.</p>
+                        <div class="book-meta">
+                            <div class="book-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>5.0</span>
+                            </div>
+                            <div class="book-length">52 pages</div>
+                        </div>
+                        <div class="book-price">$16.99</div>
+                        <div class="book-actions">
+                            <button class="btn btn-primary btn-small read-story" data-story="guardians">
+                                <i class="fas fa-eye"></i> Read
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Buy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Stories -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Community Stories</h2>
+                <p>Discover stories written by our community members, sharing their personal experiences with nature and sustainability.</p>
+            </div>
+            
+            <div class="featured-stories">
+                <div class="featured-card">
+                    <div class="featured-image">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-tag">Community Story</span>
+                        <h3>From Waste to Wonder</h3>
+                        <p>How I transformed plastic waste into beautiful art pieces and started a community upcycling movement in my village.</p>
+                        <div class="book-actions" style="margin-top: auto;">
+                            <button class="btn btn-primary btn-small">
+                                <i class="fas fa-eye"></i> Read Story
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <div class="featured-image">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-tag">Community Story</span>
+                        <h3>The Tree That United Us</h3>
+                        <p>A heartwarming tale of how planting a single tree brought our divided community together and sparked an environmental movement.</p>
+                        <div class="book-actions" style="margin-top: auto;">
+                            <button class="btn btn-primary btn-small">
+                                <i class="fas fa-eye"></i> Read Story
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <div class="featured-image">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-tag">Community Story</span>
+                        <h3>My Journey to Zero Waste</h3>
+                        <p>One family's experience transitioning to a zero-waste lifestyle in urban Rwanda, with practical tips and challenges faced.</p>
+                        <div class="book-actions" style="margin-top: auto;">
+                            <button class="btn btn-primary btn-small">
+                                <i class="fas fa-eye"></i> Read Story
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Story Section -->
+    <section class="add-story-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Share Your Story</h2>
+                <p>Have an eco-story to tell? Share your experiences, insights, and creative writing with our community.</p>
+            </div>
+            
+            <div class="add-story-form">
+                <form id="addStoryForm">
+                    <div class="form-group">
+                        <label for="storyTitle">Story Title</label>
+                        <input type="text" id="storyTitle" placeholder="Enter your story title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storyAuthor">Author Name</label>
+                        <input type="text" id="storyAuthor" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storyCategory">Category</label>
+                        <select id="storyCategory" required>
+                            <option value="">Select a category</option>
+                            <option value="fiction">Fiction</option>
+                            <option value="non-fiction">Non-Fiction</option>
+                            <option value="children">Children's Story</option>
+                            <option value="poetry">Poetry</option>
+                            <option value="personal">Personal Experience</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storyContent">Story Content</label>
+                        <textarea id="storyContent" placeholder="Write your story here..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storyLanguage">Language</label>
+                        <select id="storyLanguage" required>
+                            <option value="english">English</option>
+                            <option value="kinyarwanda">Kinyarwanda</option>
+                            <option value="french">French</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Publish Story
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                            <i class="fas fa-save"></i> Save Draft
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Join Our Storytelling Community</h2>
+            <p>Become part of ECO ART RWANDA's literary community. Share your stories, read inspiring eco-literature, and connect with fellow writers and nature enthusiasts.</p>
+            <a href="register.html" class="btn btn-primary btn-large">
+                <i class="fas fa-user-plus"></i> Join Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ECO ART RWANDA</h3>
+                    <p>Connecting art, nature, and community to create a sustainable future through creative expression.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="members.html">Our Members</a></li>
+                        <li><a href="books.html">Books & Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Story Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Fiction</a></li>
+                        <li><a href="#">Non-Fiction</a></li>
+                        <li><a href="#">Children's Stories</a></li>
+                        <li><a href="#">Poetry</a></li>
+                        <li><a href="#">Community Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</li>
+                        <li><i class="fas fa-phone"></i> +250 788 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@ecoartrwanda.org</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ECO ART RWANDA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Reading Modal -->
+    <div class="reading-modal" id="readingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Echoes of the Forest</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="story-content" id="storyContent">
+                    <!-- Story content will be inserted here dynamically -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="reading-controls">
+                    <button class="btn btn-outline" id="prevPage">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button class="btn btn-outline" id="nextPage">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="reading-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const authButtons = document.querySelector('.auth-buttons');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            authButtons.classList.toggle('active');
+            
+            // Toggle menu icon
+            const icon = mobileMenu.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Story category filtering
+        const bookNavBtns = document.querySelectorAll('.book-nav-btn');
+        const bookCards = document.querySelectorAll('.book-card');
+        
+        bookNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                bookNavBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-category');
+                
+                if (category === 'all') {
+                    // Show all books
+                    bookCards.forEach(card => {
+                        card.style.display = 'flex';
+                    });
+                } else {
+                    // Show only selected category
+                    bookCards.forEach(card => {
+                        if (card.getAttribute('data-category') === category) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('storySearch');
+        
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            bookCards.forEach(card => {
+                const title = card.querySelector('.book-title').textContent.toLowerCase();
+                const author = card.querySelector('.book-author').textContent.toLowerCase();
+                const description = card.querySelector('.book-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || author.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Filter functionality
+        const genreFilter = document.getElementById('genreFilter');
+        const lengthFilter = document.getElementById('lengthFilter');
+        const languageFilter = document.getElementById('languageFilter');
+        
+        function applyFilters() {
+            const genreValue = genreFilter.value;
+            const lengthValue = lengthFilter.value;
+            const languageValue = languageFilter.value;
+            
+            bookCards.forEach(card => {
+                const cardGenre = card.getAttribute('data-genre');
+                const cardLength = card.getAttribute('data-length');
+                const cardLanguage = card.getAttribute('data-language');
+                
+                const genreMatch = !genreValue || cardGenre === genreValue;
+                const lengthMatch = !lengthValue || cardLength === lengthValue;
+                const languageMatch = !languageValue || cardLanguage === languageValue;
+                
+                if (genreMatch && lengthMatch && languageMatch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        genreFilter.addEventListener('change', applyFilters);
+        lengthFilter.addEventListener('change', applyFilters);
+        languageFilter.addEventListener('change', applyFilters);
+        
+        // Reading modal functionality
+        const readingModal = document.getElementById('readingModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const storyContent = document.getElementById('storyContent');
+        const progressFill = document.getElementById('progressFill');
+        const readStoryButtons = document.querySelectorAll('.read-story');
+        
+        // Sample story content
+        const stories = {
+            echoes: {
+                title: "Echoes of the Forest",
+                content: `
+                    <h2>Chapter 1: The Whispering Trees</h2>
+                    <p>Kezia stood at the edge of the ancient forest, her small hand resting on the rough bark of the oldest tree in the village. The elders called it "Umuvumu w'Ubuzima" - the Tree of Life. Its branches stretched toward the sky like arms reaching for the clouds, and its roots ran deep into the earth, connecting everything in the forest.</p>
+                    
+                    <p>"Can you hear them, Kezia?" her grandmother asked, placing a gentle hand on her shoulder. "The trees are speaking to us."</p>
+                    
+                    <p>Kezia closed her eyes and listened. At first, she heard only the rustle of leaves in the wind and the distant call of birds. But then, beneath those sounds, she detected something else - a soft, rhythmic hum that seemed to pulse through the ground and up through the soles of her feet.</p>
+                    
+                    <p>"They're telling us that the forest is in danger," her grandmother continued. "The men from the city want to cut down these trees to build houses and roads."</p>
+                    
+                    <p>Kezia's eyes snapped open. "But we can't let them! The forest is our home. It gives us medicine, food, and shelter. It cleans our water and air."</p>
+                    
+                    <p>Her grandmother smiled sadly. "You understand what many have forgotten, my child. But understanding alone will not save the forest. We must show others its value."</p>
+                    
+                    <h2>Chapter 2: The Council Meeting</h2>
+                    <p>That evening, the village council gathered under the great tree. Kezia sat quietly beside her grandmother, listening as the elders debated what to do about the developers' offer.</p>
+                    
+                    <p>"They are offering much money," said Elder Nkusi. "With it, we could build a proper school and clinic for our children."</p>
+                    
+                    <p>"But at what cost?" countered Elder Mukamana. "The forest protects us from soil erosion and provides rainfall for our crops. Without it, our land will turn to dust."</p>
+                    
+                    <p>Kezia could stay silent no longer. She stood up, her small voice trembling but determined. "Honorable elders, the forest is not just trees. It is our history, our wisdom, our future. My grandmother has taught me that every plant, every insect, every bird has a purpose in the great web of life."</p>
+                    
+                    <p>The elders looked at her in surprise, but they listened as she spoke of the medicinal plants that could cure fever, the trees that prevented landslides during heavy rains, and the birds that spread seeds to grow new forests.</p>
+                    
+                    <p>"Perhaps," she suggested, "we can find another way - a way that protects the forest while still bringing development to our village."</p>
+                `
+            },
+            colors: {
+                title: "Colors of Rwanda",
+                content: `
+                    <h2>Introduction: The Land of a Thousand Hills</h2>
+                    <p>Rwanda, often called "The Land of a Thousand Hills," is a country blessed with extraordinary natural beauty and biodiversity. From the mist-covered volcanoes of the Virunga range to the tranquil waters of Lake Kivu, this small nation contains ecosystems found nowhere else on Earth.</p>
+                    
+                    <p>This book is a journey through those ecosystems, told through the stories of the people who depend on them and work to protect them. It is a celebration of Rwanda's natural heritage and a call to action for its preservation.</p>
+                    
+                    <h2>Chapter 1: Green - The Forest Canopy</h2>
+                    <p>The Nyungwe Forest is one of Africa's oldest forests, dating back to before the last Ice Age. Its canopy is a sea of green that stretches as far as the eye can see, home to chimpanzees, colobus monkeys, and over 300 species of birds.</p>
+                    
+                    <p>Jean de Dieu has been a guide in Nyungwe for twenty years. He knows every trail, every sound, every secret the forest holds. "When I was a boy," he recalls, "the forest was much larger. But people needed land for farming, and trees for firewood. Slowly, the forest shrank."</p>
+                    
+                    <p>Today, thanks to conservation efforts led by the government and local communities, Nyungwe is protected. "Now we understand that the forest is more valuable standing than cut down," Jean explains. "Eco-tourism brings visitors from around the world, creating jobs and income for our communities."</p>
+                    
+                    <h2>Chapter 2: Blue - The Waters of Life</h2>
+                    <p>Lake Kivu, one of Africa's Great Lakes, provides fish, transportation, and increasingly, clean energy through methane extraction. But its delicate ecosystem faces threats from pollution and invasive species.</p>
+                    
+                    <p>Fisherwoman Espérance has watched the lake change over her lifetime. "When I was young, the water was clearer, and we caught more fish. Now we must work harder for smaller catches."</p>
+                    
+                    <p>She is part of a women's cooperative that practices sustainable fishing and lakeshore conservation. "We plant trees along the banks to prevent soil erosion and create breeding areas for fish. We have learned that taking care of the lake means it will take care of us."</p>
+                `
+            },
+            // Additional stories would be defined here...
+            seed: {
+                title: "The Little Seed's Journey",
+                content: "<p>This is the beginning of the children's story about a little seed's adventure...</p>"
+            },
+            whispers: {
+                title: "Whispers of the Land",
+                content: "<p>This is the beginning of the poetry collection...</p>"
+            },
+            artistry: {
+                title: "Sustainable Artistry",
+                content: "<p>This is the beginning of the non-fiction book about traditional Rwandan art forms...</p>"
+            },
+            guardians: {
+                title: "Guardians of the Volcano",
+                content: "<p>This is the beginning of the adventure story set in the Virunga Mountains...</p>"
+            }
+        };
+        
+        // Open reading modal
+        readStoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const storyId = this.getAttribute('data-story');
+                const story = stories[storyId];
+                
+                if (story) {
+                    modalTitle.textContent = story.title;
+                    storyContent.innerHTML = story.content;
+                    readingModal.classList.add('active');
+                    progressFill.style.width = '0%';
+                    
+                    // Update progress as user scrolls
+                    const modalBody = document.querySelector('.modal-body');
+                    modalBody.addEventListener('scroll', updateReadingProgress);
+                }
+            });
+        });
+        
+        // Close reading modal
+        closeModal.addEventListener('click', () => {
+            readingModal.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        readingModal.addEventListener('click', (e) => {
+            if (e.target === readingModal) {
+                readingModal.classList.remove('active');
+            }
+        });
+        
+        // Update reading progress
+        function updateReadingProgress() {
+            const modalBody = document.querySelector('.modal-body');
+            const scrollTop = modalBody.scrollTop;
+            const scrollHeight = modalBody.scrollHeight - modalBody.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            
+            progressFill.style.width = `${scrollPercentage}%`;
+        }
+        
+        // Add story form submission
+        const addStoryForm = document.getElementById('addStoryForm');
+        
+        addStoryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('storyTitle').value;
+            alert(`Thank you for sharing your story "${title}"! It will be reviewed by our team before publishing.`);
+            this.reset();
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.book-card, .featured-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

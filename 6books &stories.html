@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crafts - ECO ART RWANDA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2d602d;
+            --secondary-color: #4CAF50;
+            --accent-color: #e74c3c;
+            --light-color: #f9f9f9;
+            --dark-color: #333;
+            --text-color: #444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: #e8f5e9;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #e8f5e9;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e8f5e9;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2058&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Crafts Navigation */
+        .crafts-nav {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .crafts-nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .craft-nav-btn {
+            padding: 12px 24px;
+            background: var(--light-color);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .craft-nav-btn.active, .craft-nav-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            background: white;
+            padding: 2rem 0;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+
+        /* Crafts Section */
+        .crafts-section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .crafts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .craft-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .craft-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .craft-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .craft-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .craft-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .eco-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .craft-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .craft-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            line-height: 1.3;
+        }
+
+        .craft-artisan {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .craft-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .craft-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .craft-materials {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .craft-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .craft-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .craft-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-small {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Craft Detail Modal */
+        .craft-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .craft-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .craft-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-image {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+        }
+
+        .image-thumbnails {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            background: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .thumbnail.active, .thumbnail:hover {
+            border: 2px solid var(--secondary-color);
+        }
+
+        .craft-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .detail-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .materials-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .material-tag {
+            background: var(--light-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .sustainability-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 0.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .feature i {
+            color: var(--secondary-color);
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            background: var(--light-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .purchase-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stock-info {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .in-stock {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .low-stock {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Featured Artisans */
+        .artisans-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .artisans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .artisan-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .artisan-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .artisan-avatar {
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .artisan-details {
+            padding: 1.5rem;
+        }
+
+        .artisan-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .artisan-specialty {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .artisan-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Add Craft Section */
+        .add-craft-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .add-craft-form {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .crafts-nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .craft-nav-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .filter-container {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .crafts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .craft-actions {
+                flex-direction: column;
+            }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>ECO ART RWANDA</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="members.html">Members</a></li>
+                    <li><a href="books.html">Books & Stories</a></li>
+                    <li><a href="crafts.html" class="active">Crafts</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="register.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Eco-Friendly Crafts</h1>
+            <p>Discover beautiful handmade crafts created by Rwandan artisans using sustainable materials and traditional techniques with a modern eco-friendly twist.</p>
+        </div>
+    </section>
+
+    <!-- Crafts Navigation -->
+    <section class="crafts-nav">
+        <div class="container">
+            <div class="crafts-nav-container">
+                <button class="craft-nav-btn active" data-category="all">
+                    <i class="fas fa-th"></i> All Crafts
+                </button>
+                <button class="craft-nav-btn" data-category="basketry">
+                    <i class="fas fa-basket-shopping"></i> Basketry
+                </button>
+                <button class="craft-nav-btn" data-category="textiles">
+                    <i class="fas fa-tshirt"></i> Textiles
+                </button>
+                <button class="craft-nav-btn" data-category="jewelry">
+                    <i class="fas fa-gem"></i> Jewelry
+                </button>
+                <button class="craft-nav-btn" data-category="pottery">
+                    <i class="fas fa-vase"></i> Pottery
+                </button>
+                <button class="craft-nav-btn" data-category="upcycled">
+                    <i class="fas fa-recycle"></i> Upcycled
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="search-filter">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="craftSearch" placeholder="Search crafts by name, material, or artisan...">
+                </div>
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            
+            <div class="filter-container">
+                <select class="filter-select" id="materialFilter">
+                    <option value="">All Materials</option>
+                    <option value="banana-fiber">Banana Fiber</option>
+                    <option value="sisal">Sisal</option>
+                    <option value="recycled-paper">Recycled Paper</option>
+                    <option value="clay">Clay</option>
+                    <option value="wood">Wood</option>
+                    <option value="recycled-plastic">Recycled Plastic</option>
+                </select>
+                
+                <select class="filter-select" id="priceFilter">
+                    <option value="">Any Price</option>
+                    <option value="0-20">$0 - $20</option>
+                    <option value="20-50">$20 - $50</option>
+                    <option value="50-100">$50 - $100</option>
+                    <option value="100+">$100+</option>
+                </select>
+                
+                <select class="filter-select" id="locationFilter">
+                    <option value="">All Locations</option>
+                    <option value="kigali">Kigali</option>
+                    <option value="northern">Northern Province</option>
+                    <option value="southern">Southern Province</option>
+                    <option value="eastern">Eastern Province</option>
+                    <option value="western">Western Province</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crafts Section -->
+    <section class="crafts-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Crafts</h2>
+                <p>Explore our collection of handcrafted items made with sustainable materials and traditional Rwandan techniques.</p>
+            </div>
+            
+            <div class="crafts-grid" id="craftsGrid">
+                <!-- Craft 1 -->
+                <div class="craft-card" data-category="basketry" data-material="sisal" data-price="45" data-location="southern">
+                    <div class="craft-image">
+                        <i class="fas fa-basket-shopping"></i>
+                        <div class="craft-badge">Popular</div>
+                        <div class="eco-badge">Eco-Friendly</div>
+                    </div>
+                    <div class="craft-content">
+                        <h3 class="craft-title">Traditional Rwandan Basket</h3>
+                        <div class="craft-artisan">By Dusenge Martin</div>
+                        <p class="craft-description">Handwoven using traditional techniques with natural sisal fibers dyed with plant-based colors. Each basket tells a story of Rwandan heritage.</p>
+                        <div class="craft-meta">
+                            <div class="craft-materials">
+                                <i class="fas fa-leaf"></i> Sisal, Natural Dyes
+                            </div>
+                            <div class="craft-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <div class="craft-price">$45.00</div>
+                        <div class="craft-actions">
+                            <button class="btn btn-primary btn-small view-craft" data-craft="basket">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Craft 2 -->
+                <div class="craft-card" data-category="jewelry" data-material="recycled-paper" data-price="28" data-location="kigali">
+                    <div class="craft-image">
+                        <i class="fas fa-ring"></i>
+                        <div class="craft-badge">New</div>
+                        <div class="eco-badge">Upcycled</div>
+                    </div>
+                    <div class="craft-content">
+                        <h3 class="craft-title">Recycled Paper Bead Necklace</h3>
+                        <div class="craft-artisan">By NZABAHIMANA Wilson</div>
+                        <p class="craft-description">Beautiful necklace made from rolled paper beads created from recycled magazines and newspapers. Each bead is sealed with natural wax for durability.</p>
+                        <div class="craft-meta">
+                            <div class="craft-materials">
+                                <i class="fas fa-leaf"></i> Recycled Paper, Natural Wax
+                            </div>
+                            <div class="craft-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span>4.0</span>
+                            </div>
+                        </div>
+                        <div class="craft-price">$28.00</div>
+                        <div class="craft-actions">
+                            <button class="btn btn-primary btn-small view-craft" data-craft="necklace">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Craft 3 -->
+                <div class="craft-card" data-category="textiles" data-material="banana-fiber" data-price="65" data-location="western">
+                    <div class="craft-image">
+                        <i class="fas fa-tshirt"></i>
+                        <div class="eco-badge">Natural Fiber</div>
+                    </div>
+                    <div class="craft-content">
+                        <h3 class="craft-title">Banana Fiber Wall Hanging</h3>
+                        <div class="craft-artisan">By HEZIMANA Gedeon</div>
+                        <p class="craft-description">Intricately woven wall art made from banana plant fibers. This sustainable textile showcases traditional Rwandan patterns in a contemporary design.</p>
+                        <div class="craft-meta">
+                            <div class="craft-materials">
+                                <i class="fas fa-leaf"></i> Banana Fiber, Natural Dyes
+                            </div>
+                            <div class="craft-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <div class="craft-price">$65.00</div>
+                        <div class="craft-actions">
+                            <button class="btn btn-primary btn-small view-craft" data-craft="wall-hanging">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Craft 4 -->
+                <div class="craft-card" data-category="pottery" data-material="clay" data-price="38" data-location="northern">
+                    <div class="craft-image">
+                        <i class="fas fa-vase"></i>
+                        <div class="eco-badge">Natural Material</div>
+                    </div>
+                    <div class="craft-content">
+                        <h3 class="craft-title">Hand-Coiled Clay Pot</h3>
+                        <div class="craft-artisan">By Manzi Yves</div>
+                        <p class="craft-description">Traditional hand-coiled pottery made from locally sourced clay. Fired using sustainable methods and finished with natural mineral pigments.</p>
+                        <div class="craft-meta">
+                            <div class="craft-materials">
+                                <i class="fas fa-leaf"></i> Local Clay, Mineral Pigments
+                            </div>
+                            <div class="craft-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <div class="craft-price">$38.00</div>
+                        <div class="craft-actions">
+                            <button class="btn btn-primary btn-small view-craft" data-craft="pot">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Craft 5 -->
+                <div class="craft-card" data-category="upcycled" data-material="recycled-plastic" data-price="22" data-location="eastern">
+                    <div class="craft-image">
+                        <i class="fas fa-recycle"></i>
+                        <div class="craft-badge">Bestseller</div>
+                        <div class="eco-badge">Upcycled</div>
+                    </div>
+                    <div class="craft-content">
+                        <h3 class="craft-title">Plastic Bag Weaved Tote</h3>
+                        <div class="craft-artisan">By Niyomugenga Salve</div>
+                        <p class="craft-description">Stylish and durable tote bag woven from recycled plastic bags. Each bag removes approximately 50 plastic bags from the environment.</p>
+                        <div class="craft-meta">
+                            <div class="craft-materials">
+                                <i class="fas fa-leaf"></i> Recycled Plastic Bags
+                            </div>
+                            <div class="craft-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span>4.0</span>
+                            </div>
+                        </div>
+                        <div class="craft-price">$22.00</div>
+                        <div class="craft-actions">
+                            <button class="btn btn-primary btn-small view-craft" data-craft="tote">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Craft 6 -->
+                <div class="craft-card" data-category="jewelry" data-material="wood" data-price="35" data-location="kigali">
+                    <div class="craft-image">
+                        <i class="fas fa-gem"></i>
+                        <div class="eco-badge">Sustainable Wood</div>
+                    </div>
+                    <div class="craft-content">
+                        <h3 class="craft-title">Ebony Wood Earrings</h3>
+                        <div class="craft-artisan">By Bizimana Adam</div>
+                        <p class="craft-description">Elegant earrings carved from sustainably harvested ebony wood. Each pair is unique, showcasing the natural grain and beauty of the wood.</p>
+                        <div class="craft-meta">
+                            <div class="craft-materials">
+                                <i class="fas fa-leaf"></i> Ebony Wood, Natural Finish
+                            </div>
+                            <div class="craft-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <div class="craft-price">$35.00</div>
+                        <div class="craft-actions">
+                            <button class="btn btn-primary btn-small view-craft" data-craft="earrings">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Artisans -->
+    <section class="artisans-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Artisans</h2>
+                <p>Get to know the talented craftspeople behind our eco-friendly creations.</p>
+            </div>
+            
+            <div class="artisans-grid">
+                <div class="artisan-card">
+                    <div class="artisan-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artisan-details">
+                        <h3 class="artisan-name">Dusenge Martin</h3>
+                        <div class="artisan-specialty">Master Basket Weaver</div>
+                        <div class="artisan-stats">
+                            <div class="stat">
+                                <div class="stat-number">15</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">200+</div>
+                                <div class="stat-label">Creations</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.8</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="artisan-card">
+                    <div class="artisan-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artisan-details">
+                        <h3 class="artisan-name">NZABAHIMANA Wilson</h3>
+                        <div class="artisan-specialty">Upcycling Specialist</div>
+                        <div class="artisan-stats">
+                            <div class="stat">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">150+</div>
+                                <div class="stat-label">Creations</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.6</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="artisan-card">
+                    <div class="artisan-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artisan-details">
+                        <h3 class="artisan-name">HEZIMANA Gedeon</h3>
+                        <div class="artisan-specialty">Textile Artist</div>
+                        <div class="artisan-stats">
+                            <div class="stat">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">180+</div>
+                                <div class="stat-label">Creations</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="artisan-card">
+                    <div class="artisan-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artisan-details">
+                        <h3 class="artisan-name">Niyomugenga Salve</h3>
+                        <div class="artisan-specialty">Community Coordinator</div>
+                        <div class="artisan-stats">
+                            <div class="stat">
+                                <div class="stat-number">6</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">120+</div>
+                                <div class="stat-label">Creations</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.7</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Craft Section -->
+    <section class="add-craft-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Share Your Craft</h2>
+                <p>Are you an artisan with eco-friendly creations? List your crafts on our platform and reach customers who value sustainability.</p>
+            </div>
+            
+            <div class="add-craft-form">
+                <form id="addCraftForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="craftTitle">Craft Title</label>
+                            <input type="text" id="craftTitle" placeholder="Enter craft name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="craftCategory">Category</label>
+                            <select id="craftCategory" required>
+                                <option value="">Select category</option>
+                                <option value="basketry">Basketry</option>
+                                <option value="textiles">Textiles</option>
+                                <option value="jewelry">Jewelry</option>
+                                <option value="pottery">Pottery</option>
+                                <option value="upcycled">Upcycled</option>
+                                <option value="woodwork">Woodwork</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="craftDescription">Craft Description</label>
+                        <textarea id="craftDescription" placeholder="Describe your craft, materials used, and its eco-friendly aspects..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="craftMaterials">Materials Used</label>
+                            <input type="text" id="craftMaterials" placeholder="List materials separated by commas" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="craftPrice">Price ($)</label>
+                            <input type="number" id="craftPrice" placeholder="Enter price" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="craftLocation">Location</label>
+                            <select id="craftLocation" required>
+                                <option value="kigali">Kigali</option>
+                                <option value="northern">Northern Province</option>
+                                <option value="southern">Southern Province</option>
+                                <option value="eastern">Eastern Province</option>
+                                <option value="western">Western Province</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="craftStock">Stock Quantity</label>
+                            <input type="number" id="craftStock" placeholder="How many available?" min="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="craftImages">Upload Images</label>
+                        <input type="file" id="craftImages" accept="image/*" multiple>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> List My Craft
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                            <i class="fas fa-save"></i> Save Draft
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Support Sustainable Artistry</h2>
+            <p>By purchasing eco-friendly crafts, you're not only acquiring beautiful handmade items but also supporting Rwandan artisans and sustainable practices.</p>
+            <a href="register.html" class="btn btn-primary btn-large">
+                <i class="fas fa-user-plus"></i> Join Our Community
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ECO ART RWANDA</h3>
+                    <p>Connecting art, nature, and community to create a sustainable future through creative expression.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="members.html">Our Members</a></li>
+                        <li><a href="crafts.html">Crafts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Craft Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Basketry</a></li>
+                        <li><a href="#">Textiles</a></li>
+                        <li><a href="#">Jewelry</a></li>
+                        <li><a href="#">Pottery</a></li>
+                        <li><a href="#">Upcycled Crafts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</li>
+                        <li><i class="fas fa-phone"></i> +250 788 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@ecoartrwanda.org</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ECO ART RWANDA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Craft Detail Modal -->
+    <div class="craft-modal" id="craftModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Traditional Rwandan Basket</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="craft-gallery">
+                    <div class="main-image">
+                        <i class="fas fa-basket-shopping"></i>
+                    </div>
+                    <div class="image-thumbnails">
+                        <div class="thumbnail active">
+                            <i class="fas fa-basket-shopping"></i>
+                        </div>
+                        <div class="thumbnail">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="thumbnail">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="craft-details">
+                    <div class="detail-section">
+                        <h4>Description</h4>
+                        <p>This handwoven traditional Rwandan basket is crafted using natural sisal fibers and dyed with plant-based colors. Each basket is unique and tells a story of Rwandan heritage and craftsmanship.</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Artisan</h4>
+                        <p><strong>Dusenge Martin</strong> - Master basket weaver with 15 years of experience. Specializes in traditional Rwandan weaving techniques using sustainable materials.</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Materials</h4>
+                        <div class="materials-list">
+                            <span class="material-tag">Sisal Fiber</span>
+                            <span class="material-tag">Natural Dyes</span>
+                            <span class="material-tag">Plant-based Sealant</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Sustainability Features</h4>
+                        <div class="sustainability-features">
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Biodegradable Materials</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Natural Dyes</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Renewable Resources</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Zero Waste Production</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Dimensions</h4>
+                        <p>Height: 12 inches | Diameter: 8 inches | Weight: 1.2 lbs</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Care Instructions</h4>
+                        <p>Wipe clean with a damp cloth. Avoid prolonged exposure to direct sunlight or moisture. Store in a dry place.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="purchase-info">
+                    <div class="craft-price">$45.00</div>
+                    <div class="stock-info">
+                        <span class="in-stock">In Stock (12 available)</span>
+                    </div>
+                </div>
+                <div class="craft-actions">
+                    <button class="btn btn-primary btn-small">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-secondary btn-small">
+                        <i class="far fa-heart"></i> Add to Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const authButtons = document.querySelector('.auth-buttons');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            authButtons.classList.toggle('active');
+            
+            // Toggle menu icon
+            const icon = mobileMenu.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Craft category filtering
+        const craftNavBtns = document.querySelectorAll('.craft-nav-btn');
+        const craftCards = document.querySelectorAll('.craft-card');
+        
+        craftNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                craftNavBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-category');
+                
+                if (category === 'all') {
+                    // Show all crafts
+                    craftCards.forEach(card => {
+                        card.style.display = 'flex';
+                    });
+                } else {
+                    // Show only selected category
+                    craftCards.forEach(card => {
+                        if (card.getAttribute('data-category') === category) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('craftSearch');
+        
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            craftCards.forEach(card => {
+                const title = card.querySelector('.craft-title').textContent.toLowerCase();
+                const artisan = card.querySelector('.craft-artisan').textContent.toLowerCase();
+                const description = card.querySelector('.craft-description').textContent.toLowerCase();
+                const materials = card.querySelector('.craft-materials').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || artisan.includes(searchTerm) || 
+                    description.includes(searchTerm) || materials.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Filter functionality
+        const materialFilter = document.getElementById('materialFilter');
+        const priceFilter = document.getElementById('priceFilter');
+        const locationFilter = document.getElementById('locationFilter');
+        
+        function applyFilters() {
+            const materialValue = materialFilter.value;
+            const priceValue = priceFilter.value;
+            const locationValue = locationFilter.value;
+            
+            craftCards.forEach(card => {
+                const cardMaterial = card.getAttribute('data-material');
+                const cardPrice = parseInt(card.getAttribute('data-price'));
+                const cardLocation = card.getAttribute('data-location');
+                
+                const materialMatch = !materialValue || cardMaterial === materialValue;
+                const locationMatch = !locationValue || cardLocation === locationValue;
+                
+                let priceMatch = true;
+                if (priceValue) {
+                    if (priceValue === '0-20') {
+                        priceMatch = cardPrice >= 0 && cardPrice <= 20;
+                    } else if (priceValue === '20-50') {
+                        priceMatch = cardPrice >= 20 && cardPrice <= 50;
+                    } else if (priceValue === '50-100') {
+                        priceMatch = cardPrice >= 50 && cardPrice <= 100;
+                    } else if (priceValue === '100+') {
+                        priceMatch = cardPrice >= 100;
+                    }
+                }
+                
+                if (materialMatch && priceMatch && locationMatch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        materialFilter.addEventListener('change', applyFilters);
+        priceFilter.addEventListener('change', applyFilters);
+        locationFilter.addEventListener('change', applyFilters);
+        
+        // Craft detail modal functionality
+        const craftModal = document.getElementById('craftModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const viewCraftButtons = document.querySelectorAll('.view-craft');
+        
+        // Open craft modal
+        viewCraftButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const craftCard = this.closest('.craft-card');
+                const title = craftCard.querySelector('.craft-title').textContent;
+                const artisan = craftCard.querySelector('.craft-artisan').textContent;
+                const price = craftCard.querySelector('.craft-price').textContent;
+                
+                modalTitle.textContent = title;
+                craftModal.classList.add('active');
+            });
+        });
+        
+        // Close craft modal
+        closeModal.addEventListener('click', () => {
+            craftModal.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        craftModal.addEventListener('click', (e) => {
+            if (e.target === craftModal) {
+                craftModal.classList.remove('active');
+            }
+        });
+        
+        // Add craft form submission
+        const addCraftForm = document.getElementById('addCraftForm');
+        
+        addCraftForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('craftTitle').value;
+            alert(`Thank you for listing your craft "${title}"! It will be reviewed by our team before appearing in the marketplace.`);
+            this.reset();
+        });
+        
+        // Thumbnail selection
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.querySelector('.main-image');
+        
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real application, this would change the main image
+                // For this demo, we'll just change the icon
+                const icon = this.querySelector('i').className;
+                mainImage.innerHTML = `<i class="${icon}"></i>`;
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.craft-card, .artisan-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

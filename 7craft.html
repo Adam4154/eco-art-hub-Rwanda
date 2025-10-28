@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawings - ECO ART RWANDA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2d602d;
+            --secondary-color: #4CAF50;
+            --accent-color: #e74c3c;
+            --light-color: #f9f9f9;
+            --dark-color: #333;
+            --text-color: #444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: #e8f5e9;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #e8f5e9;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e8f5e9;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=2058&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Drawings Navigation */
+        .drawings-nav {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .drawings-nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .drawing-nav-btn {
+            padding: 12px 24px;
+            background: var(--light-color);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .drawing-nav-btn.active, .drawing-nav-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            background: white;
+            padding: 2rem 0;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+
+        /* Drawings Section */
+        .drawings-section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .drawings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .drawing-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .drawing-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drawing-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .drawing-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .eco-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .drawing-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawing-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            line-height: 1.3;
+        }
+
+        .drawing-artist {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .drawing-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .drawing-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .drawing-materials {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .drawing-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .drawing-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .drawing-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-small {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Drawing Detail Modal */
+        .drawing-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .drawing-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .drawing-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-image {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 4rem;
+        }
+
+        .image-thumbnails {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            background: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .thumbnail.active, .thumbnail:hover {
+            border: 2px solid var(--secondary-color);
+        }
+
+        .drawing-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .detail-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .materials-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .material-tag {
+            background: var(--light-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .sustainability-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 0.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .feature i {
+            color: var(--secondary-color);
+        }
+
+        .artist-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .artist-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .artist-details h5 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .artist-details p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            background: var(--light-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .purchase-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stock-info {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .in-stock {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .low-stock {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Featured Artists */
+        .artists-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .artist-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .artist-avatar {
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .artist-details {
+            padding: 1.5rem;
+        }
+
+        .artist-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .artist-specialty {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .artist-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Add Drawing Section */
+        .add-drawing-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .add-drawing-form {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .drawings-nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .drawing-nav-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .filter-container {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .drawings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .drawing-actions {
+                flex-direction: column;
+            }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>ECO ART RWANDA</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="members.html">Members</a></li>
+                    <li><a href="books.html">Books & Stories</a></li>
+                    <li><a href="crafts.html">Crafts</a></li>
+                    <li><a href="drawings.html" class="active">Drawings</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="register.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Artistic Drawings</h1>
+            <p>Discover stunning artistic drawings that capture the beauty of Rwanda's nature, wildlife, and cultural heritage through sustainable art practices.</p>
+        </div>
+    </section>
+
+    <!-- Drawings Navigation -->
+    <section class="drawings-nav">
+        <div class="container">
+            <div class="drawings-nav-container">
+                <button class="drawing-nav-btn active" data-category="all">
+                    <i class="fas fa-th"></i> All Drawings
+                </button>
+                <button class="drawing-nav-btn" data-category="wildlife">
+                    <i class="fas fa-paw"></i> Wildlife
+                </button>
+                <button class="drawing-nav-btn" data-category="landscape">
+                    <i class="fas fa-mountain"></i> Landscapes
+                </button>
+                <button class="drawing-nav-btn" data-category="portrait">
+                    <i class="fas fa-user"></i> Portraits
+                </button>
+                <button class="drawing-nav-btn" data-category="cultural">
+                    <i class="fas fa-monument"></i> Cultural
+                </button>
+                <button class="drawing-nav-btn" data-category="abstract">
+                    <i class="fas fa-shapes"></i> Abstract
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="search-filter">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="drawingSearch" placeholder="Search drawings by title, artist, or theme...">
+                </div>
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            
+            <div class="filter-container">
+                <select class="filter-select" id="mediumFilter">
+                    <option value="">All Mediums</option>
+                    <option value="pencil">Pencil</option>
+                    <option value="charcoal">Charcoal</option>
+                    <option value="ink">Ink</option>
+                    <option value="watercolor">Watercolor</option>
+                    <option value="digital">Digital</option>
+                </select>
+                
+                <select class="filter-select" id="priceFilter">
+                    <option value="">Any Price</option>
+                    <option value="0-50">$0 - $50</option>
+                    <option value="50-100">$50 - $100</option>
+                    <option value="100-200">$100 - $200</option>
+                    <option value="200+">$200+</option>
+                </select>
+                
+                <select class="filter-select" id="sizeFilter">
+                    <option value="">Any Size</option>
+                    <option value="small">Small (under 12")</option>
+                    <option value="medium">Medium (12-24")</option>
+                    <option value="large">Large (24"+")</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drawings Section -->
+    <section class="drawings-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Drawings</h2>
+                <p>Explore our collection of artistic drawings that celebrate Rwanda's natural beauty and cultural heritage.</p>
+            </div>
+            
+            <div class="drawings-grid" id="drawingsGrid">
+                <!-- Drawing 1 -->
+                <div class="drawing-card" data-category="wildlife" data-medium="pencil" data-price="85" data-size="medium">
+                    <div class="drawing-image">
+                        <i class="fas fa-paw"></i>
+                        <div class="drawing-badge">Popular</div>
+                        <div class="eco-badge">Eco-Friendly</div>
+                    </div>
+                    <div class="drawing-content">
+                        <h3 class="drawing-title">Mountain Gorilla Portrait</h3>
+                        <div class="drawing-artist">By Mbarushimana Muhamadi</div>
+                        <p class="drawing-description">Detailed pencil drawing of a mountain gorilla from the Virunga Mountains, capturing the gentle expression and majestic presence of these endangered primates.</p>
+                        <div class="drawing-meta">
+                            <div class="drawing-materials">
+                                <i class="fas fa-pencil-alt"></i> Graphite Pencil
+                            </div>
+                            <div class="drawing-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <div class="drawing-price">$85.00</div>
+                        <div class="drawing-actions">
+                            <button class="btn btn-primary btn-small view-drawing" data-drawing="gorilla">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drawing 2 -->
+                <div class="drawing-card" data-category="landscape" data-medium="watercolor" data-price="120" data-size="large">
+                    <div class="drawing-image">
+                        <i class="fas fa-mountain"></i>
+                        <div class="drawing-badge">New</div>
+                        <div class="eco-badge">Eco-Friendly</div>
+                    </div>
+                    <div class="drawing-content">
+                        <h3 class="drawing-title">Volcanoes at Sunrise</h3>
+                        <div class="drawing-artist">By DUSABIMANA Ivan Landry</div>
+                        <p class="drawing-description">Watercolor painting capturing the majestic Virunga volcanoes at sunrise, with soft morning light illuminating the mist-covered peaks.</p>
+                        <div class="drawing-meta">
+                            <div class="drawing-materials">
+                                <i class="fas fa-paint-brush"></i> Watercolor
+                            </div>
+                            <div class="drawing-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <div class="drawing-price">$120.00</div>
+                        <div class="drawing-actions">
+                            <button class="btn btn-primary btn-small view-drawing" data-drawing="volcanoes">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drawing 3 -->
+                <div class="drawing-card" data-category="cultural" data-medium="ink" data-price="65" data-size="medium">
+                    <div class="drawing-image">
+                        <i class="fas fa-users"></i>
+                        <div class="eco-badge">Cultural Heritage</div>
+                    </div>
+                    <div class="drawing-content">
+                        <h3 class="drawing-title">Traditional Dance</h3>
+                        <div class="drawing-artist">By Niyomugenga Salve</div>
+                        <p class="drawing-description">Ink drawing capturing the energy and movement of Intore dancers, preserving the cultural heritage of Rwandan traditional dance.</p>
+                        <div class="drawing-meta">
+                            <div class="drawing-materials">
+                                <i class="fas fa-pen-nib"></i> Ink on Paper
+                            </div>
+                            <div class="drawing-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span>4.0</span>
+                            </div>
+                        </div>
+                        <div class="drawing-price">$65.00</div>
+                        <div class="drawing-actions">
+                            <button class="btn btn-primary btn-small view-drawing" data-drawing="dance">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drawing 4 -->
+                <div class="drawing-card" data-category="portrait" data-medium="charcoal" data-price="95" data-size="large">
+                    <div class="drawing-image">
+                        <i class="fas fa-user"></i>
+                        <div class="eco-badge">Eco-Friendly</div>
+                    </div>
+                    <div class="drawing-content">
+                        <h3 class="drawing-title">Elder's Wisdom</h3>
+                        <div class="drawing-artist">By Bizimana Adam</div>
+                        <p class="drawing-description">Charcoal portrait of a Rwandan elder, capturing the wisdom and life experiences reflected in their expressive face and gentle eyes.</p>
+                        <div class="drawing-meta">
+                            <div class="drawing-materials">
+                                <i class="fas fa-pencil-alt"></i> Charcoal
+                            </div>
+                            <div class="drawing-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <div class="drawing-price">$95.00</div>
+                        <div class="drawing-actions">
+                            <button class="btn btn-primary btn-small view-drawing" data-drawing="elder">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drawing 5 -->
+                <div class="drawing-card" data-category="abstract" data-medium="digital" data-price="75" data-size="medium">
+                    <div class="drawing-image">
+                        <i class="fas fa-shapes"></i>
+                        <div class="drawing-badge">Digital</div>
+                        <div class="eco-badge">Eco-Friendly</div>
+                    </div>
+                    <div class="drawing-content">
+                        <h3 class="drawing-title">Echoes of the Forest</h3>
+                        <div class="drawing-artist">By DUSABIMANA Ivan Landry</div>
+                        <p class="drawing-description">Abstract digital artwork inspired by the sounds and patterns of Rwanda's rainforests, created using sustainable digital practices.</p>
+                        <div class="drawing-meta">
+                            <div class="drawing-materials">
+                                <i class="fas fa-laptop"></i> Digital Art
+                            </div>
+                            <div class="drawing-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span>4.0</span>
+                            </div>
+                        </div>
+                        <div class="drawing-price">$75.00</div>
+                        <div class="drawing-actions">
+                            <button class="btn btn-primary btn-small view-drawing" data-drawing="echoes">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drawing 6 -->
+                <div class="drawing-card" data-category="wildlife" data-medium="pencil" data-price="110" data-size="large">
+                    <div class="drawing-image">
+                        <i class="fas fa-feather"></i>
+                        <div class="eco-badge">Eco-Friendly</div>
+                    </div>
+                    <div class="drawing-content">
+                        <h3 class="drawing-title">Crowned Crane</h3>
+                        <div class="drawing-artist">By Manzi Yves</div>
+                        <p class="drawing-description">Detailed pencil drawing of Rwanda's national bird, the Grey Crowned Crane, showcasing its elegant plumage and distinctive golden crown.</p>
+                        <div class="drawing-meta">
+                            <div class="drawing-materials">
+                                <i class="fas fa-pencil-alt"></i> Graphite Pencil
+                            </div>
+                            <div class="drawing-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <div class="drawing-price">$110.00</div>
+                        <div class="drawing-actions">
+                            <button class="btn btn-primary btn-small view-drawing" data-drawing="crane">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            <button class="btn btn-secondary btn-small">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Artists -->
+    <section class="artists-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Artists</h2>
+                <p>Meet the talented artists behind these beautiful drawings.</p>
+            </div>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artist-details">
+                        <h3 class="artist-name">Mbarushimana Muhamadi</h3>
+                        <div class="artist-specialty">Wildlife & Portrait Artist</div>
+                        <div class="artist-stats">
+                            <div class="stat">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">85+</div>
+                                <div class="stat-label">Drawings</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.8</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artist-details">
+                        <h3 class="artist-name">DUSABIMANA Ivan Landry</h3>
+                        <div class="artist-specialty">Digital & Landscape Artist</div>
+                        <div class="artist-stats">
+                            <div class="stat">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">60+</div>
+                                <div class="stat-label">Drawings</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artist-details">
+                        <h3 class="artist-name">Niyomugenga Salve</h3>
+                        <div class="artist-specialty">Cultural & Traditional Artist</div>
+                        <div class="artist-stats">
+                            <div class="stat">
+                                <div class="stat-number">10</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">70+</div>
+                                <div class="stat-label">Drawings</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.7</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artist-details">
+                        <h3 class="artist-name">Bizimana Adam</h3>
+                        <div class="artist-specialty">Portrait & Charcoal Artist</div>
+                        <div class="artist-stats">
+                            <div class="stat">
+                                <div class="stat-number">15</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">100+</div>
+                                <div class="stat-label">Drawings</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.8</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-eye"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Drawing Section -->
+    <section class="add-drawing-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Share Your Artwork</h2>
+                <p>Are you an artist with drawings to share? List your artwork on our platform and connect with art enthusiasts who value sustainability.</p>
+            </div>
+            
+            <div class="add-drawing-form">
+                <form id="addDrawingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="drawingTitle">Drawing Title</label>
+                            <input type="text" id="drawingTitle" placeholder="Enter drawing title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="drawingCategory">Category</label>
+                            <select id="drawingCategory" required>
+                                <option value="">Select category</option>
+                                <option value="wildlife">Wildlife</option>
+                                <option value="landscape">Landscape</option>
+                                <option value="portrait">Portrait</option>
+                                <option value="cultural">Cultural</option>
+                                <option value="abstract">Abstract</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="drawingDescription">Drawing Description</label>
+                        <textarea id="drawingDescription" placeholder="Describe your drawing, inspiration, and its connection to nature or Rwandan culture..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="drawingMedium">Medium</label>
+                            <select id="drawingMedium" required>
+                                <option value="pencil">Pencil</option>
+                                <option value="charcoal">Charcoal</option>
+                                <option value="ink">Ink</option>
+                                <option value="watercolor">Watercolor</option>
+                                <option value="digital">Digital</option>
+                                <option value="mixed">Mixed Media</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="drawingPrice">Price ($)</label>
+                            <input type="number" id="drawingPrice" placeholder="Enter price" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="drawingSize">Size</label>
+                            <select id="drawingSize" required>
+                                <option value="small">Small (under 12")</option>
+                                <option value="medium">Medium (12-24")</option>
+                                <option value="large">Large (24"+")</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="drawingStock">Available as</label>
+                            <select id="drawingStock" required>
+                                <option value="original">Original</option>
+                                <option value="print">Limited Edition Print</option>
+                                <option value="both">Both Original & Prints</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="drawingImages">Upload Images</label>
+                        <input type="file" id="drawingImages" accept="image/*" multiple>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> List My Drawing
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                            <i class="fas fa-save"></i> Save Draft
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Support Sustainable Art</h2>
+            <p>By purchasing eco-friendly drawings, you're not only acquiring beautiful artwork but also supporting Rwandan artists and sustainable creative practices.</p>
+            <a href="register.html" class="btn btn-primary btn-large">
+                <i class="fas fa-user-plus"></i> Join Our Community
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ECO ART RWANDA</h3>
+                    <p>Connecting art, nature, and community to create a sustainable future through creative expression.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="members.html">Our Members</a></li>
+                        <li><a href="drawings.html">Drawings</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Drawing Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Wildlife</a></li>
+                        <li><a href="#">Landscapes</a></li>
+                        <li><a href="#">Portraits</a></li>
+                        <li><a href="#">Cultural</a></li>
+                        <li><a href="#">Abstract</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</li>
+                        <li><i class="fas fa-phone"></i> +250 788 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@ecoartrwanda.org</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ECO ART RWANDA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Drawing Detail Modal -->
+    <div class="drawing-modal" id="drawingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Mountain Gorilla Portrait</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="drawing-gallery">
+                    <div class="main-image">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <div class="image-thumbnails">
+                        <div class="thumbnail active">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="thumbnail">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="thumbnail">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="drawing-details">
+                    <div class="detail-section">
+                        <h4>Description</h4>
+                        <p>This detailed pencil drawing captures the gentle expression and majestic presence of a mountain gorilla from the Virunga Mountains. Created using sustainable art practices, this piece highlights the beauty and vulnerability of these endangered primates.</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Artist Information</h4>
+                        <div class="artist-info">
+                            <div class="artist-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="artist-details">
+                                <h5>Mbarushimana Muhamadi</h5>
+                                <p>Wildlife & Portrait Artist with 12 years of experience specializing in pencil drawings of Rwandan wildlife.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Materials & Techniques</h4>
+                        <div class="materials-list">
+                            <span class="material-tag">Graphite Pencils</span>
+                            <span class="material-tag">Recycled Paper</span>
+                            <span class="material-tag">Eco-Friendly Fixative</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Sustainability Features</h4>
+                        <div class="sustainability-features">
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Recycled Paper</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Non-Toxic Materials</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Carbon-Neutral Shipping</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Supports Conservation</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Specifications</h4>
+                        <p><strong>Dimensions:</strong> 18" x 24"<br>
+                        <strong>Medium:</strong> Graphite Pencil on Paper<br>
+                        <strong>Frame:</strong> Unframed (sustainable framing options available)<br>
+                        <strong>Year Created:</strong> 2023</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Care Instructions</h4>
+                        <p>Keep away from direct sunlight and moisture. Frame under UV-protective glass for long-term preservation. Handle with clean, dry hands.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="purchase-info">
+                    <div class="drawing-price">$85.00</div>
+                    <div class="stock-info">
+                        <span class="in-stock">In Stock (Original)</span>
+                    </div>
+                </div>
+                <div class="drawing-actions">
+                    <button class="btn btn-primary btn-small">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-secondary btn-small">
+                        <i class="far fa-heart"></i> Add to Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const authButtons = document.querySelector('.auth-buttons');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            authButtons.classList.toggle('active');
+            
+            // Toggle menu icon
+            const icon = mobileMenu.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Drawing category filtering
+        const drawingNavBtns = document.querySelectorAll('.drawing-nav-btn');
+        const drawingCards = document.querySelectorAll('.drawing-card');
+        
+        drawingNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                drawingNavBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-category');
+                
+                if (category === 'all') {
+                    // Show all drawings
+                    drawingCards.forEach(card => {
+                        card.style.display = 'flex';
+                    });
+                } else {
+                    // Show only selected category
+                    drawingCards.forEach(card => {
+                        if (card.getAttribute('data-category') === category) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('drawingSearch');
+        
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            drawingCards.forEach(card => {
+                const title = card.querySelector('.drawing-title').textContent.toLowerCase();
+                const artist = card.querySelector('.drawing-artist').textContent.toLowerCase();
+                const description = card.querySelector('.drawing-description').textContent.toLowerCase();
+                const materials = card.querySelector('.drawing-materials').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || artist.includes(searchTerm) || 
+                    description.includes(searchTerm) || materials.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Filter functionality
+        const mediumFilter = document.getElementById('mediumFilter');
+        const priceFilter = document.getElementById('priceFilter');
+        const sizeFilter = document.getElementById('sizeFilter');
+        
+        function applyFilters() {
+            const mediumValue = mediumFilter.value;
+            const priceValue = priceFilter.value;
+            const sizeValue = sizeFilter.value;
+            
+            drawingCards.forEach(card => {
+                const cardMedium = card.getAttribute('data-medium');
+                const cardPrice = parseInt(card.getAttribute('data-price'));
+                const cardSize = card.getAttribute('data-size');
+                
+                const mediumMatch = !mediumValue || cardMedium === mediumValue;
+                const sizeMatch = !sizeValue || cardSize === sizeValue;
+                
+                let priceMatch = true;
+                if (priceValue) {
+                    if (priceValue === '0-50') {
+                        priceMatch = cardPrice >= 0 && cardPrice <= 50;
+                    } else if (priceValue === '50-100') {
+                        priceMatch = cardPrice >= 50 && cardPrice <= 100;
+                    } else if (priceValue === '100-200') {
+                        priceMatch = cardPrice >= 100 && cardPrice <= 200;
+                    } else if (priceValue === '200+') {
+                        priceMatch = cardPrice >= 200;
+                    }
+                }
+                
+                if (mediumMatch && priceMatch && sizeMatch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        mediumFilter.addEventListener('change', applyFilters);
+        priceFilter.addEventListener('change', applyFilters);
+        sizeFilter.addEventListener('change', applyFilters);
+        
+        // Drawing detail modal functionality
+        const drawingModal = document.getElementById('drawingModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const viewDrawingButtons = document.querySelectorAll('.view-drawing');
+        
+        // Open drawing modal
+        viewDrawingButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const drawingCard = this.closest('.drawing-card');
+                const title = drawingCard.querySelector('.drawing-title').textContent;
+                const artist = drawingCard.querySelector('.drawing-artist').textContent;
+                const price = drawingCard.querySelector('.drawing-price').textContent;
+                
+                modalTitle.textContent = title;
+                drawingModal.classList.add('active');
+            });
+        });
+        
+        // Close drawing modal
+        closeModal.addEventListener('click', () => {
+            drawingModal.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        drawingModal.addEventListener('click', (e) => {
+            if (e.target === drawingModal) {
+                drawingModal.classList.remove('active');
+            }
+        });
+        
+        // Add drawing form submission
+        const addDrawingForm = document.getElementById('addDrawingForm');
+        
+        addDrawingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('drawingTitle').value;
+            alert(`Thank you for listing your drawing "${title}"! It will be reviewed by our team before appearing in the gallery.`);
+            this.reset();
+        });
+        
+        // Thumbnail selection
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.querySelector('.main-image');
+        
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real application, this would change the main image
+                // For this demo, we'll just change the icon
+                const icon = this.querySelector('i').className;
+                mainImage.innerHTML = `<i class="${icon}"></i>`;
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.drawing-card, .artist-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
