@@ -107,6 +107,9 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .toggle-btn.active {
@@ -206,6 +209,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            text-decoration: none;
         }
 
         .btn-primary {
@@ -214,7 +218,7 @@
         }
 
         .btn-primary:hover {
-            background: #3d8b40;
+            background: #295b2b;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -312,6 +316,57 @@
             display: none;
         }
 
+        /* CSS-only form toggle */
+        #login-toggle:checked ~ .form-container .login-form {
+            display: block;
+        }
+        
+        #login-toggle:checked ~ .form-container .register-form {
+            display: none;
+        }
+        
+        #register-toggle:checked ~ .form-container .register-form {
+            display: block;
+        }
+        
+        #register-toggle:checked ~ .form-container .login-form {
+            display: none;
+        }
+        
+        /* Hide the radio buttons */
+        input[type="radio"] {
+            display: none;
+        }
+        
+        /* Style the active toggle button */
+        #login-toggle:checked ~ .form-container .toggle-btn[for="login-toggle"],
+        #register-toggle:checked ~ .form-container .toggle-btn[for="register-toggle"] {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .back-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .back-btn {
+            padding: 10px 15px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #e0e0e0;
+        }
+
         @media (max-width: 500px) {
             .form-container {
                 padding: 30px 20px;
@@ -320,11 +375,19 @@
             .social-login {
                 flex-direction: column;
             }
+            
+            .back-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <input type="radio" name="form-toggle" id="login-toggle" checked>
+        <input type="radio" name="form-toggle" id="register-toggle">
+        
         <div class="logo">
             <i class="fas fa-leaf"></i>
             <h1>ECO ART RWANDA</h1>
@@ -338,20 +401,12 @@
             </div>
 
             <div class="form-toggle">
-                <button class="toggle-btn active" id="loginToggle">Login</button>
-                <button class="toggle-btn" id="registerToggle">Register</button>
-            </div>
-
-            <div class="success-message" id="successMessage">
-                Account created successfully! You can now login.
-            </div>
-
-            <div class="error-message" id="errorMessage">
-                Invalid credentials. Please try again.
+                <label for="login-toggle" class="toggle-btn active">Login</label>
+                <label for="register-toggle" class="toggle-btn">Register</label>
             </div>
 
             <!-- Login Form -->
-            <form class="form active" id="loginForm">
+            <form class="form login-form active">
                 <div class="form-group">
                     <label for="loginEmail">Email Address</label>
                     <input type="email" id="loginEmail" placeholder="Enter your email" required>
@@ -361,7 +416,7 @@
                     <label for="loginPassword">Password</label>
                     <div class="password-container">
                         <input type="password" id="loginPassword" placeholder="Enter your password" required>
-                        <button type="button" class="password-toggle" id="loginPasswordToggle">
+                        <button type="button" class="password-toggle">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
@@ -375,9 +430,9 @@
                     <a href="#" class="forgot-password">Forgot password?</a>
                 </div>
 
-                <button type="submit" class="btn btn-primary">
+                <a href="2home page.html" class="btn btn-primary">
                     <i class="fas fa-sign-in-alt"></i> Sign In
-                </button>
+                </a>
 
                 <div class="divider">
                     <span>Or continue with</span>
@@ -396,12 +451,17 @@
                 </div>
 
                 <div class="form-footer">
-                    Don't have an account? <a href="#" id="switchToRegister">Sign up</a>
+                    Don't have an account? <label for="register-toggle" style="color: var(--secondary-color);
+                     cursor: pointer; font-weight: 500;">Sign up</label>
+                </div>
+                <div class="back-buttons">
+                    <button class="back-btn" onclick="history.back()">Go Back</button>
+                    <a href="2home page.html" class="back-btn">Back Home</a>
                 </div>
             </form>
 
             <!-- Registration Form -->
-            <form class="form" id="registerForm">
+            <form class="form register-form">
                 <div class="form-group">
                     <label for="fullName">Full Name</label>
                     <input type="text" id="fullName" placeholder="Enter your full name" required>
@@ -426,7 +486,7 @@
                     <label for="registerPassword">Password</label>
                     <div class="password-container">
                         <input type="password" id="registerPassword" placeholder="Create a password" required>
-                        <button type="button" class="password-toggle" id="registerPasswordToggle">
+                        <button type="button" class="password-toggle">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
@@ -436,7 +496,7 @@
                     <label for="confirmPassword">Confirm Password</label>
                     <div class="password-container">
                         <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-                        <button type="button" class="password-toggle" id="confirmPasswordToggle">
+                        <button type="button" class="password-toggle">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
@@ -471,210 +531,21 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">
+                    <a href="home page.html" class="btn btn-primary"></a>
                     <i class="fas fa-user-plus"></i> Create Account
+                    
                 </button>
 
                 <div class="form-footer">
-                    Already have an account? <a href="#" id="switchToLogin">Sign in</a>
+                    Already have an account? <label for="login-toggle" style="color: var(--secondary-color); cursor: pointer; font-weight: 500;">Sign in</label>
+                </div>
+                
+                <div class="back-buttons">
+                    <button class="back-btn" onclick="history.back()">Go Back</button>
+                    <a href="home page.html" class="back-btn">Back Home</a>
                 </div>
             </form>
         </div>
     </div>
-
-    <script>
-        // DOM Elements
-        const loginToggle = document.getElementById('loginToggle');
-        const registerToggle = document.getElementById('registerToggle');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const switchToRegister = document.getElementById('switchToRegister');
-        const switchToLogin = document.getElementById('switchToLogin');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        
-        // Password toggle functionality
-        const loginPasswordToggle = document.getElementById('loginPasswordToggle');
-        const loginPassword = document.getElementById('loginPassword');
-        
-        const registerPasswordToggle = document.getElementById('registerPasswordToggle');
-        const registerPassword = document.getElementById('registerPassword');
-        
-        const confirmPasswordToggle = document.getElementById('confirmPasswordToggle');
-        const confirmPassword = document.getElementById('confirmPassword');
-        
-        // Toggle between login and register forms
-        loginToggle.addEventListener('click', () => {
-            loginToggle.classList.add('active');
-            registerToggle.classList.remove('active');
-            loginForm.classList.add('active');
-            registerForm.classList.remove('active');
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-        });
-        
-        registerToggle.addEventListener('click', () => {
-            registerToggle.classList.add('active');
-            loginToggle.classList.remove('active');
-            registerForm.classList.add('active');
-            loginForm.classList.remove('active');
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-        });
-        
-        switchToRegister.addEventListener('click', (e) => {
-            e.preventDefault();
-            registerToggle.click();
-        });
-        
-        switchToLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginToggle.click();
-        });
-        
-        // Password visibility toggle
-        function togglePasswordVisibility(toggleBtn, passwordField) {
-            toggleBtn.addEventListener('click', () => {
-                if (passwordField.type === 'password') {
-                    passwordField.type = 'text';
-                    toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
-                } else {
-                    passwordField.type = 'password';
-                    toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
-                }
-            });
-        }
-        
-        togglePasswordVisibility(loginPasswordToggle, loginPassword);
-        togglePasswordVisibility(registerPasswordToggle, registerPassword);
-        togglePasswordVisibility(confirmPasswordToggle, confirmPassword);
-        
-        // Form validation and submission
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            // Simple validation
-            if (!email || !password) {
-                showError('Please fill in all fields');
-                return;
-            }
-            
-            // In a real application, this would be an API call
-            // For demo purposes, we'll simulate a login
-            simulateLogin(email, password);
-        });
-        
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const fullName = document.getElementById('fullName').value;
-            const username = document.getElementById('username').value;
-            const dateOfBirth = document.getElementById('dateOfBirth').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const userType = document.getElementById('userType').value;
-            
-            // Validation
-            if (!fullName || !username || !dateOfBirth || !email || !password || !confirmPassword || !userType) {
-                showError('Please fill in all required fields');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showError('Passwords do not match');
-                return;
-            }
-            
-            if (password.length < 6) {
-                showError('Password must be at least 6 characters long');
-                return;
-            }
-            
-            // In a real application, this would be an API call
-            // For demo purposes, we'll simulate registration
-            simulateRegistration(fullName, username, dateOfBirth, email, password, userType);
-        });
-        
-        // Simulate login process
-        function simulateLogin(email, password) {
-            // Show loading state
-            const submitBtn = loginForm.querySelector('.btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call delay
-            setTimeout(() => {
-                // For demo purposes, accept any non-empty credentials
-                if (email && password) {
-                    // Successful login
-                    showSuccess('Login successful! Redirecting...');
-                    
-                    // Redirect to main site after a delay
-                    setTimeout(() => {
-                        window.location.href = 'eco-art-main.html'; // Replace with your main site URL
-                    }, 1500);
-                } else {
-                    // Failed login
-                    showError('Invalid email or password');
-                }
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        }
-        
-        // Simulate registration process
-        function simulateRegistration(fullName, username, dateOfBirth, email, password, userType) {
-            // Show loading state
-            const submitBtn = registerForm.querySelector('.btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call delay
-            setTimeout(() => {
-                // For demo purposes, always succeed
-                showSuccess('Account created successfully! You can now login.');
-                
-                // Reset form
-                registerForm.reset();
-                
-                // Switch to login form after a delay
-                setTimeout(() => {
-                    loginToggle.click();
-                }, 2000);
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
-        }
-        
-        // Show success message
-        function showSuccess(message) {
-            successMessage.textContent = message;
-            successMessage.style.display = 'block';
-            errorMessage.style.display = 'none';
-        }
-        
-        // Show error message
-        function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.style.display = 'block';
-            successMessage.style.display = 'none';
-        }
-        
-        // Initialize date of birth field with a reasonable default (18 years ago)
-        window.addEventListener('DOMContentLoaded', () => {
-            const today = new Date();
-            const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-            document.getElementById('dateOfBirth').valueAsDate = eighteenYearsAgo;
-        });
-    </script>
 </body>
 </html>

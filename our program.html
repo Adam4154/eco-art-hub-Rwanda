@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Programs - ECO ART RWANDA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2d602d;
+            --secondary-color: #4CAF50;
+            --accent-color: #e74c3c;
+            --light-color: #f9f9f9;
+            --dark-color: #333;
+            --text-color: #444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: #e8f5e9;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #e8f5e9;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e8f5e9;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Programs Navigation */
+        .programs-nav {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .programs-nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .program-nav-btn {
+            padding: 12px 24px;
+            background: var(--light-color);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .program-nav-btn.active, .program-nav-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Programs Section */
+        .programs-section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .program-category {
+            margin-bottom: 4rem;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .program-image {
+            height: 200px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .program-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .program-content {
+            padding: 2rem;
+        }
+
+        .program-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .program-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .program-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .program-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .program-features h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .features-list li i {
+            color: var(--secondary-color);
+            margin-top: 3px;
+        }
+
+        .program-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background: #eee;
+            border: 1px solid #eee;
+        }
+
+        .calendar-day {
+            background: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .calendar-date {
+            background: white;
+            padding: 1rem;
+            min-height: 100px;
+            position: relative;
+        }
+
+        .calendar-date.has-event {
+            background: #f0f9f0;
+        }
+
+        .date-number {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .event-indicator {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .event-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .event-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .calendar-date.has-event:hover .event-tooltip {
+            opacity: 1;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--secondary-color);
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .author-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .programs-nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .program-nav-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-actions {
+                flex-direction: column;
+            }
+
+            .calendar-grid {
+                grid-template-columns: repeat(7, 1fr);
+                font-size: 0.8rem;
+            }
+
+            .calendar-date {
+                padding: 0.5rem;
+                min-height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>ECO ART RWANDA</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html" class="active">Programs</a></li>
+                    <li><a href="members.html">Members</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="register.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Programs</h1>
+            <p>Discover our diverse range of educational and community programs designed to promote eco-art, sustainability, and creative expression in Rwanda.</p>
+        </div>
+    </section>
+
+    <!-- Programs Navigation -->
+    <section class="programs-nav">
+        <div class="container">
+            <div class="programs-nav-container">
+                <button class="program-nav-btn active" data-category="all">
+                    <i class="fas fa-th"></i> All Programs
+                </button>
+                <button class="program-nav-btn" data-category="training">
+                    <i class="fas fa-graduation-cap"></i> Training
+                </button>
+                <button class="program-nav-btn" data-category="workshops">
+                    <i class="fas fa-hands"></i> Workshops
+                </button>
+                <button class="program-nav-btn" data-category="community">
+                    <i class="fas fa-users"></i> Community
+                </button>
+                <button class="program-nav-btn" data-category="youth">
+                    <i class="fas fa-child"></i> Youth Programs
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Programs</h2>
+                <p>Explore our current and upcoming programs designed to foster creativity, sustainability, and community engagement.</p>
+            </div>
+
+            <!-- Training Programs -->
+            <div class="program-category" id="training">
+                <h3 style="color: var(--primary-color); margin-bottom: 2rem; font-size: 1.8rem;">
+                    <i class="fas fa-graduation-cap"></i> Training Programs
+                </h3>
+                
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <div class="program-image">
+                            <i class="fas fa-paint-brush"></i>
+                            <div class="program-badge">Popular</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Artisan Training Program</h3>
+                            <div class="program-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i> 12 Weeks
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i> 20 Participants
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i> Kigali
+                                </div>
+                            </div>
+                            <p class="program-description">
+                                Comprehensive training for aspiring artists in sustainable art techniques, business skills, and environmental awareness.
+                            </p>
+                            <div class="program-features">
+                                <h4>What You'll Learn:</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check"></i> Sustainable material selection</li>
+                                    <li><i class="fas fa-check"></i> Eco-friendly art techniques</li>
+                                    <li><i class="fas fa-check"></i> Business and marketing skills</li>
+                                    <li><i class="fas fa-check"></i> Environmental conservation principles</li>
+                                </ul>
+                            </div>
+                            <div class="program-actions">
+                                <a href="#" class="btn btn-primary btn-small">
+                                    <i class="fas fa-info-circle"></i> Learn More
+                                </a>
+                                <a href="#" class="btn btn-secondary btn-small">
+                                    <i class="fas fa-calendar-plus"></i> Register
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-image">
+                            <i class="fas fa-recycle"></i>
+                            <div class="program-badge">New</div>
+                        </div>
+                        <div class="program-content">
+                            <h3>Sustainable Design Course</h3>
+                            <div class="program-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i> 8 Weeks
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i> 15 Participants
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i> Online
+                                </div>
+                            </div>
+                            <p class="program-description">
+                                Learn to create beautiful, functional designs using recycled and sustainable materials.
+                            </p>
+                            <div class="program-features">
+                                <h4>What You'll Learn:</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check"></i> Upcycling techniques</li>
+                                    <li><i class="fas fa-check"></i> Material lifecycle assessment</li>
+                                    <li><i class="fas fa-check"></i> Sustainable design principles</li>
+                                    <li><i class="fas fa-check"></i> Product development</li>
+                                </ul>
+                            </div>
+                            <div class="program-actions">
+                                <a href="#" class="btn btn-primary btn-small">
+                                    <i class="fas fa-info-circle"></i> Learn More
+                                </a>
+                                <a href="#" class="btn btn-secondary btn-small">
+                                    <i class="fas fa-calendar-plus"></i> Register
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workshop Programs -->
+            <div class="program-category" id="workshops">
+                <h3 style="color: var(--primary-color); margin-bottom: 2rem; font-size: 1.8rem;">
+                    <i class="fas fa-hands"></i> Workshops
+                </h3>
+                
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <div class="program-image">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="program-content">
+                            <h3>Upcycling Workshop</h3>
+                            <div class="program-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i> Monthly
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i> 25 Participants
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i> Community Centers
+                                </div>
+                            </div>
+                            <p class="program-description">
+                                Hands-on workshops teaching how to transform waste materials into beautiful and functional art pieces.
+                            </p>
+                            <div class="program-features">
+                                <h4>Workshop Highlights:</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check"></i> Plastic bottle transformation</li>
+                                    <li><i class="fas fa-check"></i> Paper and cardboard art</li>
+                                    <li><i class="fas fa-check"></i> Textile upcycling</li>
+                                    <li><i class="fas fa-check"></i> Take-home creation</li>
+                                </ul>
+                            </div>
+                            <div class="program-actions">
+                                <a href="#" class="btn btn-primary btn-small">
+                                    <i class="fas fa-info-circle"></i> Learn More
+                                </a>
+                                <a href="#" class="btn btn-secondary btn-small">
+                                    <i class="fas fa-calendar-plus"></i> Register
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-image">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="program-content">
+                            <h3>Natural Dye Workshop</h3>
+                            <div class="program-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i> Quarterly
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i> 12 Participants
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i> Art Studio
+                                </div>
+                            </div>
+                            <p class="program-description">
+                                Learn to create vibrant colors from natural materials like plants, vegetables, and minerals.
+                            </p>
+                            <div class="program-features">
+                                <h4>Workshop Highlights:</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check"></i> Plant identification for dyes</li>
+                                    <li><i class="fas fa-check"></i> Fabric preparation techniques</li>
+                                    <li><i class="fas fa-check"></i> Natural dye extraction</li>
+                                    <li><i class="fas fa-check"></i> Color fixing methods</li>
+                                </ul>
+                            </div>
+                            <div class="program-actions">
+                                <a href="#" class="btn btn-primary btn-small">
+                                    <i class="fas fa-info-circle"></i> Learn More
+                                </a>
+                                <a href="#" class="btn btn-secondary btn-small">
+                                    <i class="fas fa-calendar-plus"></i> Register
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Programs -->
+            <div class="program-category" id="community">
+                <h3 style="color: var(--primary-color); margin-bottom: 2rem; font-size: 1.8rem;">
+                    <i class="fas fa-users"></i> Community Programs
+                </h3>
+                
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <div class="program-image">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <div class="program-content">
+                            <h3>Community Planting Day</h3>
+                            <div class="program-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i> Seasonal
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i> Open to All
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i> Various Locations
+                                </div>
+                            </div>
+                            <p class="program-description">
+                                Join us for a day of tree planting combined with eco-art activities for the whole family.
+                            </p>
+                            <div class="program-features">
+                                <h4>Event Highlights:</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check"></i> Tree planting ceremony</li>
+                                    <li><i class="fas fa-check"></i> Eco-art installations</li>
+                                    <li><i class="fas fa-check"></i> Family activities</li>
+                                    <li><i class="fas fa-check"></i> Community celebration</li>
+                                </ul>
+                            </div>
+                            <div class="program-actions">
+                                <a href="#" class="btn btn-primary btn-small">
+                                    <i class="fas fa-info-circle"></i> Learn More
+                                </a>
+                                <a href="#" class="btn btn-secondary btn-small">
+                                    <i class="fas fa-calendar-plus"></i> Register
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-image">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="program-content">
+                            <h3>Eco-Art Market</h3>
+                            <div class="program-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i> Monthly
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i> 50+ Vendors
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i> Kigali City Center
+                                </div>
+                            </div>
+                            <p class="program-description">
+                                A monthly market where our artists can showcase and sell their sustainable art pieces to the public.
+                            </p>
+                            <div class="program-features">
+                                <h4>Market Features:</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check"></i> Local artisan products</li>
+                                    <li><i class="fas fa-check"></i> Live demonstrations</li>
+                                    <li><i class="fas fa-check"></i> Food and entertainment</li>
+                                    <li><i class="fas fa-check"></i> Eco-education stalls</li>
+                                </ul>
+                            </div>
+                            <div class="program-actions">
+                                <a href="#" class="btn btn-primary btn-small">
+                                    <i class="fas fa-info-circle"></i> Learn More
+                                </a>
+                                <a href="#" class="btn btn-secondary btn-small">
+                                    <i class="fas fa-calendar-plus"></i> Register as Vendor
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="calendar-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Program Calendar</h2>
+                <p>Check our upcoming events and program schedules. Register early as spots fill quickly!</p>
+            </div>
+            
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h3>October 2023</h3>
+                    <div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <button class="btn btn-outline btn-small">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid">
+                    <div class="calendar-day">Sun</div>
+                    <div class="calendar-day">Mon</div>
+                    <div class="calendar-day">Tue</div>
+                    <div class="calendar-day">Wed</div>
+                    <div class="calendar-day">Thu</div>
+                    <div class="calendar-day">Fri</div>
+                    <div class="calendar-day">Sat</div>
+                    
+                    <!-- Calendar dates would be generated dynamically in a real application -->
+                    <div class="calendar-date">
+                        <div class="date-number">1</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">2</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">3</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">4</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">5</div>
+                    </div>
+                    <div class="calendar-date has-event">
+                        <div class="date-number">6</div>
+                        <div class="event-indicator">
+                            <div class="event-dot"></div>
+                            <div class="event-tooltip">Upcycling Workshop</div>
+                        </div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">7</div>
+                    </div>
+                    
+                    <!-- More dates would continue... -->
+                    <div class="calendar-date">
+                        <div class="date-number">8</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">9</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">10</div>
+                    </div>
+                    <div class="calendar-date has-event">
+                        <div class="date-number">11</div>
+                        <div class="event-indicator">
+                            <div class="event-dot"></div>
+                            <div class="event-tooltip">Artisan Training Starts</div>
+                        </div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">12</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">13</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">14</div>
+                    </div>
+                    
+                    <!-- More dates would continue... -->
+                    <div class="calendar-date">
+                        <div class="date-number">15</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">16</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">17</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">18</div>
+                    </div>
+                    <div class="calendar-date has-event">
+                        <div class="date-number">19</div>
+                        <div class="event-indicator">
+                            <div class="event-dot"></div>
+                            <div class="event-tooltip">Eco-Art Market</div>
+                        </div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">20</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">21</div>
+                    </div>
+                    
+                    <!-- More dates would continue... -->
+                    <div class="calendar-date">
+                        <div class="date-number">22</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">23</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">24</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">25</div>
+                    </div>
+                    <div class="calendar-date has-event">
+                        <div class="date-number">26</div>
+                        <div class="event-indicator">
+                            <div class="event-dot"></div>
+                            <div class="event-tooltip">Natural Dye Workshop</div>
+                        </div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">27</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">28</div>
+                    </div>
+                    
+                    <!-- More dates would continue... -->
+                    <div class="calendar-date">
+                        <div class="date-number">29</div>
+                    </div>
+                    <div class="calendar-date">
+                        <div class="date-number">30</div>
+                    </div>
+                    <div class="calendar-date has-event">
+                        <div class="date-number">31</div>
+                        <div class="event-indicator">
+                            <div class="event-dot"></div>
+                            <div class="event-tooltip">Community Planting Day</div>
+                        </div>
+                    </div>
+                    <div class="calendar-date empty"></div>
+                    <div class="calendar-date empty"></div>
+                    <div class="calendar-date empty"></div>
+                    <div class="calendar-date empty"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Participants Say</h2>
+                <p>Hear from community members who have participated in our programs.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The Artisan Training Program completely transformed my approach to art. I now create beautiful pieces while contributing to environmental conservation and have started my own sustainable art business.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Mbarushimana Muhamadi</h4>
+                            <p>Graduate, Artisan Training Program</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Through the Upcycling Workshop, I learned how to transform everyday waste into beautiful home decor. It's amazing what you can create with materials that would otherwise end up in landfills.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Niyomugenga Salve</h4>
+                            <p>Workshop Participant</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The Eco-Art Market provided the perfect platform to showcase my sustainable crafts. I've connected with customers who appreciate environmentally conscious art and have grown my business significantly.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Dusenge Martin</h4>
+                            <p>Market Vendor & Artisan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Join Our Programs?</h2>
+            <p>Whether you're an aspiring artist, environmental enthusiast, or simply curious about eco-art, we have a program for you. Join our community and start your sustainable art journey today.</p>
+            <a href="register.html" class="btn btn-primary btn-large">
+                <i class="fas fa-user-plus"></i> Register for Programs
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ECO ART RWANDA</h3>
+                    <p>Connecting art, nature, and community to create a sustainable future through creative expression.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="members.html">Our Members</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="#training">Training Programs</a></li>
+                        <li><a href="#workshops">Workshops</a></li>
+                        <li><a href="#community">Community Programs</a></li>
+                        <li><a href="#youth">Youth Programs</a></li>
+                        <li><a href="#">Upcoming Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</li>
+                        <li><i class="fas fa-phone"></i> +250 788 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@ecoartrwanda.org</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ECO ART RWANDA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        const navLinks = document.querySelector('.nav-links');
+        const authButtons = document.querySelector('.auth-buttons');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            authButtons.classList.toggle('active');
+            
+            // Toggle menu icon
+            const icon = mobileMenu.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Program category filtering
+        const programNavBtns = document.querySelectorAll('.program-nav-btn');
+        const programCategories = document.querySelectorAll('.program-category');
+        
+        programNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                programNavBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-category');
+                
+                if (category === 'all') {
+                    // Show all categories
+                    programCategories.forEach(cat => {
+                        cat.style.display = 'block';
+                    });
+                } else {
+                    // Show only selected category
+                    programCategories.forEach(cat => {
+                        if (cat.id === category) {
+                            cat.style.display = 'block';
+                        } else {
+                            cat.style.display = 'none';
+                        }
+                    });
+                }
+                
+                // Scroll to programs section
+                document.querySelector('.programs-section').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        authButtons.classList.remove('active');
+                        mobileMenu.querySelector('i').classList.remove('fa-times');
+                        mobileMenu.querySelector('i').classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.program-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
