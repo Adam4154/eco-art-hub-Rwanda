@@ -148,7 +148,7 @@
         /* Hero Section */
         .hero {
              background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-            url(art.jpeg);
+            url('art.jpeg');
             color: white;
             padding: 8rem 0;
             text-align: center;
@@ -240,9 +240,8 @@
 
         /* Activities Section */
         .activities {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            padding: 5rem 0;
+            background: #f9f9f9;
         }
 
         .activities-grid {
@@ -251,12 +250,12 @@
             gap: 2rem;
         }
 
-  .activity-card {
+        .activity-card {
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
         }
 
         .activity-card:hover {
@@ -265,20 +264,12 @@
 
         .activity-image {
             height: 200px;
-            background-color: var(--light);
+            background-color: var(--secondary-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-        }
-        .activity-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        .activity-card:hover .component-img img {
-            transform: scale(1.05);
+            color: white;
+            font-size: 3rem;
         }
 
         .activity-content {
@@ -286,8 +277,9 @@
         }
 
         .activity-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
 
         /* Community Section */
@@ -550,13 +542,13 @@
                     <span>ECO ART RWANDA</span>
                 </div>
                 
-                <!-- <ul class="nav-links">
+                <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#mission">Mission</a></li>
                     <li><a href="#activities">Activities</a></li>
                     <li><a href="#community">Community</a></li>
                     <li><a href="#programs">Programs</a></li>
-                </ul> -->
+                </ul>
                 
                 <div class="auth-buttons">
                     <a href="login form.html" class="btn btn-outline">
@@ -640,7 +632,7 @@
             <div class="activities-grid">
                 <div class="activity-card">
                     <div class="activity-image">
-                <img src="" alt="">
+                        <i class="fas fa-book"></i>
                     </div>
                     <div class="activity-content">
                         <h3>Eco-Storytelling</h3>
@@ -660,7 +652,7 @@
                 
                 <div class="activity-card">
                     <div class="activity-image">
-                     <img src="env.jpeg" alt="">>
+                        <i class="fas fa-palette"></i>
                     </div>
                     <div class="activity-content">
                         <h3>Environmental Art</h3>
@@ -779,7 +771,7 @@
         <div class="container">
             <h2>Ready to Join Our Eco-Art Community?</h2>
             <p>Become part of a growing movement that combines creativity with environmental stewardship. Together, we can create a more sustainable future through art.</p>
-            <a href="login form.html" class="btn btn-primary btn-large">
+            <a href="register.html" class="btn btn-primary btn-large">
                 <i class="fas fa-user-plus"></i> Create Your Account
             </a>
         </div>

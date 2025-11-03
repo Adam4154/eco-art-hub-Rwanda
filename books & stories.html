@@ -147,7 +147,7 @@
 
         /* Page Header */
         .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('book.jpeg');
             color: white;
             padding: 6rem 0;
             text-align: center;
@@ -551,18 +551,90 @@
             margin-bottom: 1rem;
         }
 
-        /* Add Story Section */
-        .add-story-section {
+        /* Short Stories Section */
+        .short-stories-section {
             padding: 5rem 0;
             background: white;
         }
 
-        .add-story-form {
-            background: var(--light-color);
+        .short-stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .short-story-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .short-story-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .short-story-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .short-story-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .short-story-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            line-height: 1.3;
+        }
+
+        .short-story-author {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .short-story-excerpt {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .short-story-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Document Upload Section */
+        .upload-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .upload-form {
+            background: white;
             padding: 2rem;
             border-radius: 10px;
             max-width: 800px;
             margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .form-group {
@@ -596,11 +668,71 @@
             resize: vertical;
         }
 
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--secondary-color);
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .file-upload-area i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .file-upload-area p {
+            margin-bottom: 1rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .uploaded-files {
+            margin-top: 1rem;
+        }
+
+        .uploaded-file {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: var(--light-color);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .uploaded-file i {
+            color: var(--secondary-color);
+        }
+
         .form-actions {
             display: flex;
             justify-content: flex-end;
             gap: 1rem;
             margin-top: 2rem;
+        }
+
+        /* Add Story Section */
+        .add-story-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .add-story-form {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         /* CTA Section */
@@ -768,17 +900,17 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="programs.html">Programs</a></li>
-                    <li><a href="members.html">Members</a></li>
-                    <li><a href="books.html" class="active">Books & Stories</a></li>
-                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="our program.html">Programs</a></li>
+                    <li><a href="our members.html">Members</a></li>
+                    <li><a href="books & stories.html" class="active">Books & Stories</a></li>
+                    <li><a href="our resources.html">Resources</a></li>
                 </ul>
                 
                 <div class="auth-buttons">
-                    <a href="login.html" class="btn btn-outline">
+                    <a href="login form.html" class="btn btn-outline">
                         <i class="fas fa-sign-in-alt"></i> Login
                     </a>
-                    <a href="register.html" class="btn btn-primary">
+                    <a href="login form.html" class="btn btn-primary">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </div>
@@ -816,6 +948,9 @@
                 </button>
                 <button class="book-nav-btn" data-category="poetry">
                     <i class="fas fa-pen-fancy"></i> Poetry
+                </button>
+                <button class="book-nav-btn" data-category="short-stories">
+                    <i class="fas fa-bookmark"></i> Short Stories
                 </button>
             </div>
         </div>
@@ -865,12 +1000,12 @@
     <section class="books-section">
         <div class="container">
             <div class="section-title">
-                <h2>Featured Stories</h2>
-                <p>Explore our collection of eco-stories that inspire environmental consciousness and celebrate Rwandan nature.</p>
+                <h2>Featured Books</h2>
+                <p>Explore our collection of eco-literature that inspires environmental consciousness and celebrates Rwandan nature.</p>
             </div>
             
             <div class="books-grid" id="booksGrid">
-                <!-- Story 1 -->
+                <!-- Book 1 -->
                 <div class="book-card" data-category="fiction" data-genre="environment" data-length="medium" data-language="english">
                     <div class="book-cover">
                         <i class="fas fa-book-open"></i>
@@ -905,7 +1040,7 @@
                     </div>
                 </div>
                 
-                <!-- Story 2 -->
+                <!-- Book 2 -->
                 <div class="book-card" data-category="non-fiction" data-genre="educational" data-length="long" data-language="english">
                     <div class="book-cover">
                         <i class="fas fa-book-open"></i>
@@ -940,7 +1075,7 @@
                     </div>
                 </div>
                 
-                <!-- Story 3 -->
+                <!-- Book 3 -->
                 <div class="book-card" data-category="children" data-genre="adventure" data-length="short" data-language="kinyarwanda">
                     <div class="book-cover">
                         <i class="fas fa-book-open"></i>
@@ -973,51 +1108,29 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Story 4 -->
-                <div class="book-card" data-category="poetry" data-genre="inspirational" data-length="short" data-language="english">
-                    <div class="book-cover">
-                        <i class="fas fa-book-open"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Short Stories Section -->
+    <section class="short-stories-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Short Stories</h2>
+                <p>Quick reads that pack powerful messages about nature, sustainability, and Rwandan culture.</p>
+            </div>
+            
+            <div class="short-stories-grid">
+                <!-- Short Story 1 -->
+                <div class="short-story-card" data-category="short-stories" data-genre="inspirational" data-length="short" data-language="english">
+                    <div class="short-story-image">
+                        <i class="fas fa-feather-alt"></i>
                     </div>
-                    <div class="book-content">
-                        <h3 class="book-title">Whispers of the Land</h3>
-                        <div class="book-author">By Dusenge Martin</div>
-                        <p class="book-description">A collection of poignant poems that capture the beauty of Rwanda's natural world and the deep connection between people and their environment.</p>
-                        <div class="book-meta">
-                            <div class="book-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                                <span>4.5</span>
-                            </div>
-                            <div class="book-length">18 pages</div>
-                        </div>
-                        <div class="book-price">$10.99</div>
-                        <div class="book-actions">
-                            <button class="btn btn-primary btn-small read-story" data-story="whispers">
-                                <i class="fas fa-eye"></i> Read
-                            </button>
-                            <button class="btn btn-secondary btn-small">
-                                <i class="fas fa-cart-plus"></i> Buy
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Story 5 -->
-                <div class="book-card" data-category="non-fiction" data-genre="cultural" data-length="medium" data-language="english">
-                    <div class="book-cover">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="book-content">
-                        <h3 class="book-title">Sustainable Artistry</h3>
-                        <div class="book-author">By Iradukunda Manzi</div>
-                        <p class="book-description">Exploring traditional Rwandan art forms and their sustainable practices, with insights from master artisans preserving these eco-friendly techniques.</p>
-                        <div class="book-meta">
+                    <div class="short-story-content">
+                        <h3 class="short-story-title">The Last Baobab</h3>
+                        <div class="short-story-author">By Dusenge Martin</div>
+                        <p class="short-story-excerpt">In a small village, the last remaining baobab tree holds the memories of generations. When developers threaten to cut it down, the community must decide what they value most.</p>
+                        <div class="short-story-meta">
                             <div class="book-rating">
                                 <div class="stars">
                                     <i class="fas fa-star"></i>
@@ -1028,30 +1141,56 @@
                                 </div>
                                 <span>4.0</span>
                             </div>
-                            <div class="book-length">32 pages</div>
+                            <div class="book-length">8 min read</div>
                         </div>
-                        <div class="book-price">$14.99</div>
                         <div class="book-actions">
-                            <button class="btn btn-primary btn-small read-story" data-story="artistry">
-                                <i class="fas fa-eye"></i> Read
-                            </button>
-                            <button class="btn btn-secondary btn-small">
-                                <i class="fas fa-cart-plus"></i> Buy
+                            <button class="btn btn-primary btn-small read-story" data-story="baobab">
+                                <i class="fas fa-eye"></i> Read Now
                             </button>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Story 6 -->
-                <div class="book-card" data-category="fiction" data-genre="adventure" data-length="long" data-language="french">
-                    <div class="book-cover">
-                        <i class="fas fa-book-open"></i>
+                <!-- Short Story 2 -->
+                <div class="short-story-card" data-category="short-stories" data-genre="cultural" data-length="short" data-language="kinyarwanda">
+                    <div class="short-story-image">
+                        <i class="fas fa-mountain"></i>
                     </div>
-                    <div class="book-content">
-                        <h3 class="book-title">Guardians of the Volcano</h3>
-                        <div class="book-author">By DUSABIMANA Ivan Landry</div>
-                        <p class="book-description">An epic adventure set in the Virunga Mountains, where a group of young conservationists protect the endangered mountain gorillas from poachers.</p>
-                        <div class="book-meta">
+                    <div class="short-story-content">
+                        <h3 class="short-story-title">Voices from the Volcano</h3>
+                        <div class="short-story-author">By Iradukunda Manzi</div>
+                        <p class="short-story-excerpt">A young guide working in the Virunga mountains discovers ancient wisdom about living in harmony with nature from the elders of his community.</p>
+                        <div class="short-story-meta">
+                            <div class="book-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>4.5</span>
+                            </div>
+                            <div class="book-length">12 min read</div>
+                        </div>
+                        <div class="book-actions">
+                            <button class="btn btn-primary btn-small read-story" data-story="volcano">
+                                <i class="fas fa-eye"></i> Read Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Short Story 3 -->
+                <div class="short-story-card" data-category="short-stories" data-genre="environment" data-length="short" data-language="english">
+                    <div class="short-story-image">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <div class="short-story-content">
+                        <h3 class="short-story-title">Plastic Flowers</h3>
+                        <div class="short-story-author">By DUSABIMANA Ivan Landry</div>
+                        <p class="short-story-excerpt">A young artist finds beauty in discarded plastic, transforming waste into stunning floral sculptures that spark a community recycling movement.</p>
+                        <div class="short-story-meta">
                             <div class="book-rating">
                                 <div class="stars">
                                     <i class="fas fa-star"></i>
@@ -1062,15 +1201,11 @@
                                 </div>
                                 <span>5.0</span>
                             </div>
-                            <div class="book-length">52 pages</div>
+                            <div class="book-length">10 min read</div>
                         </div>
-                        <div class="book-price">$16.99</div>
                         <div class="book-actions">
-                            <button class="btn btn-primary btn-small read-story" data-story="guardians">
-                                <i class="fas fa-eye"></i> Read
-                            </button>
-                            <button class="btn btn-secondary btn-small">
-                                <i class="fas fa-cart-plus"></i> Buy
+                            <button class="btn btn-primary btn-small read-story" data-story="plastic">
+                                <i class="fas fa-eye"></i> Read Now
                             </button>
                         </div>
                     </div>
@@ -1097,7 +1232,7 @@
                         <h3>From Waste to Wonder</h3>
                         <p>How I transformed plastic waste into beautiful art pieces and started a community upcycling movement in my village.</p>
                         <div class="book-actions" style="margin-top: auto;">
-                            <button class="btn btn-primary btn-small">
+                            <button class="btn btn-primary btn-small read-story" data-story="waste">
                                 <i class="fas fa-eye"></i> Read Story
                             </button>
                         </div>
@@ -1113,7 +1248,7 @@
                         <h3>The Tree That United Us</h3>
                         <p>A heartwarming tale of how planting a single tree brought our divided community together and sparked an environmental movement.</p>
                         <div class="book-actions" style="margin-top: auto;">
-                            <button class="btn btn-primary btn-small">
+                            <button class="btn btn-primary btn-small read-story" data-story="tree">
                                 <i class="fas fa-eye"></i> Read Story
                             </button>
                         </div>
@@ -1129,7 +1264,7 @@
                         <h3>My Journey to Zero Waste</h3>
                         <p>One family's experience transitioning to a zero-waste lifestyle in urban Rwanda, with practical tips and challenges faced.</p>
                         <div class="book-actions" style="margin-top: auto;">
-                            <button class="btn btn-primary btn-small">
+                            <button class="btn btn-primary btn-small read-story" data-story="zerowaste">
                                 <i class="fas fa-eye"></i> Read Story
                             </button>
                         </div>
@@ -1139,11 +1274,82 @@
         </div>
     </section>
 
+    <!-- Document Upload Section -->
+    <section class="upload-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Upload Your Document</h2>
+                <p>Share your stories, books, or documents with our community. We support PDF, DOCX, and TXT files.</p>
+            </div>
+            
+            <div class="upload-form">
+                <form id="uploadForm">
+                    <div class="form-group">
+                        <label for="documentTitle">Document Title</label>
+                        <input type="text" id="documentTitle" placeholder="Enter document title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="documentAuthor">Author Name</label>
+                        <input type="text" id="documentAuthor" placeholder="Enter author name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="documentCategory">Category</label>
+                        <select id="documentCategory" required>
+                            <option value="">Select a category</option>
+                            <option value="fiction">Fiction</option>
+                            <option value="non-fiction">Non-Fiction</option>
+                            <option value="children">Children's Story</option>
+                            <option value="poetry">Poetry</option>
+                            <option value="short-story">Short Story</option>
+                            <option value="educational">Educational</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="documentDescription">Description</label>
+                        <textarea id="documentDescription" placeholder="Brief description of your document..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="documentLanguage">Language</label>
+                        <select id="documentLanguage" required>
+                            <option value="english">English</option>
+                            <option value="kinyarwanda">Kinyarwanda</option>
+                            <option value="french">French</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Upload Document</label>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop your file here or click to browse</p>
+                            <p class="small-text">Supported formats: PDF, DOCX, TXT (Max: 10MB)</p>
+                            <input type="file" id="fileInput" class="file-input" accept=".pdf,.docx,.txt">
+                        </div>
+                        <div class="uploaded-files" id="uploadedFiles"></div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-upload"></i> Upload Document
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="clearUpload">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Add Story Section -->
     <section class="add-story-section">
         <div class="container">
             <div class="section-title">
-                <h2>Share Your Story</h2>
+                <h2>Write Your Story</h2>
                 <p>Have an eco-story to tell? Share your experiences, insights, and creative writing with our community.</p>
             </div>
             
@@ -1203,7 +1409,7 @@
         <div class="container">
             <h2>Join Our Storytelling Community</h2>
             <p>Become part of ECO ART RWANDA's literary community. Share your stories, read inspiring eco-literature, and connect with fellow writers and nature enthusiasts.</p>
-            <a href="register.html" class="btn btn-primary btn-large">
+            <a href="login form.html" class="btn btn-primary btn-large">
                 <i class="fas fa-user-plus"></i> Join Now
             </a>
         </div>
@@ -1237,9 +1443,9 @@
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="programs.html">Programs</a></li>
-                        <li><a href="members.html">Our Members</a></li>
-                        <li><a href="books.html">Books & Stories</a></li>
+                        <li><a href="our program.html">Programs</a></li>
+                        <li><a href="our members.html">Our Members</a></li>
+                        <li><a href="books & stories.html">Books & Stories</a></li>
                     </ul>
                 </div>
                 
@@ -1250,6 +1456,7 @@
                         <li><a href="#">Non-Fiction</a></li>
                         <li><a href="#">Children's Stories</a></li>
                         <li><a href="#">Poetry</a></li>
+                        <li><a href="#">Short Stories</a></li>
                         <li><a href="#">Community Stories</a></li>
                     </ul>
                 </div>
@@ -1266,7 +1473,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 ECO ART RWANDA. All rights reserved.</p>
+                <p>&copy; 2025 ECO ART HUB RWANDA. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1326,7 +1533,7 @@
         
         // Story category filtering
         const bookNavBtns = document.querySelectorAll('.book-nav-btn');
-        const bookCards = document.querySelectorAll('.book-card');
+        const bookCards = document.querySelectorAll('.book-card, .short-story-card');
         
         bookNavBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -1362,9 +1569,9 @@
             const searchTerm = searchInput.value.toLowerCase();
             
             bookCards.forEach(card => {
-                const title = card.querySelector('.book-title').textContent.toLowerCase();
-                const author = card.querySelector('.book-author').textContent.toLowerCase();
-                const description = card.querySelector('.book-description').textContent.toLowerCase();
+                const title = card.querySelector('.book-title, .short-story-title').textContent.toLowerCase();
+                const author = card.querySelector('.book-author, .short-story-author').textContent.toLowerCase();
+                const description = card.querySelector('.book-description, .short-story-excerpt').textContent.toLowerCase();
                 
                 if (title.includes(searchTerm) || author.includes(searchTerm) || description.includes(searchTerm)) {
                     card.style.display = 'flex';
@@ -1459,13 +1666,23 @@
                     <p>Jean de Dieu has been a guide in Nyungwe for twenty years. He knows every trail, every sound, every secret the forest holds. "When I was a boy," he recalls, "the forest was much larger. But people needed land for farming, and trees for firewood. Slowly, the forest shrank."</p>
                     
                     <p>Today, thanks to conservation efforts led by the government and local communities, Nyungwe is protected. "Now we understand that the forest is more valuable standing than cut down," Jean explains. "Eco-tourism brings visitors from around the world, creating jobs and income for our communities."</p>
+                `
+            },
+            baobab: {
+                title: "The Last Baobab",
+                content: `
+                    <h2>The Last Baobab</h2>
+                    <p>In the heart of the village stood a baobab tree so ancient that no one could remember a time before it. Its massive trunk, wide enough for three men to embrace, bore the scars of centuries. Children played in its shade, elders gathered to share wisdom beneath its branches, and birds nested in its crown.</p>
                     
-                    <h2>Chapter 2: Blue - The Waters of Life</h2>
-                    <p>Lake Kivu, one of Africa's Great Lakes, provides fish, transportation, and increasingly, clean energy through methane extraction. But its delicate ecosystem faces threats from pollution and invasive species.</p>
+                    <p>But the tree was more than just a landmark. It was the village's living memory. Carved into its bark were marks recording births, deaths, droughts, and celebrations. Each generation had added their story to the tree's history.</p>
                     
-                    <p>Fisherwoman Espérance has watched the lake change over her lifetime. "When I was young, the water was clearer, and we caught more fish. Now we must work harder for smaller catches."</p>
+                    <p>When the developers came with their plans to build a shopping center where the baobab stood, the village was divided. Some saw progress and economic opportunity. Others saw the destruction of their heritage.</p>
                     
-                    <p>She is part of a women's cooperative that practices sustainable fishing and lakeshore conservation. "We plant trees along the banks to prevent soil erosion and create breeding areas for fish. We have learned that taking care of the lake means it will take care of us."</p>
+                    <p>It was young Ange, only twelve years old, who found the solution. She proposed that the village create a nature park around the baobab, with the tree as its centerpiece. They could charge a small fee for visitors and use the money to fund community projects.</p>
+                    
+                    <p>The developers were skeptical at first, but when they saw the passion in the villagers' eyes and heard Ange's eloquent plea, they agreed to modify their plans. The baobab would stay, and the shopping center would be built around it.</p>
+                    
+                    <p>Today, the baobab still stands, now surrounded by a beautiful park that attracts tourists from across Rwanda. The village has prospered, and Ange's idea has become a model for sustainable development throughout the country.</p>
                 `
             },
             // Additional stories would be defined here...
@@ -1473,17 +1690,25 @@
                 title: "The Little Seed's Journey",
                 content: "<p>This is the beginning of the children's story about a little seed's adventure...</p>"
             },
-            whispers: {
-                title: "Whispers of the Land",
-                content: "<p>This is the beginning of the poetry collection...</p>"
+            volcano: {
+                title: "Voices from the Volcano",
+                content: "<p>This is the beginning of the short story about ancient wisdom from the Virunga mountains...</p>"
             },
-            artistry: {
-                title: "Sustainable Artistry",
-                content: "<p>This is the beginning of the non-fiction book about traditional Rwandan art forms...</p>"
+            plastic: {
+                title: "Plastic Flowers",
+                content: "<p>This is the beginning of the short story about transforming waste into art...</p>"
             },
-            guardians: {
-                title: "Guardians of the Volcano",
-                content: "<p>This is the beginning of the adventure story set in the Virunga Mountains...</p>"
+            waste: {
+                title: "From Waste to Wonder",
+                content: "<p>This is the beginning of the community story about upcycling plastic waste...</p>"
+            },
+            tree: {
+                title: "The Tree That United Us",
+                content: "<p>This is the beginning of the community story about how a tree brought a community together...</p>"
+            },
+            zerowaste: {
+                title: "My Journey to Zero Waste",
+                content: "<p>This is the beginning of the community story about transitioning to zero waste...</p>"
             }
         };
         
@@ -1528,6 +1753,80 @@
             progressFill.style.width = `${scrollPercentage}%`;
         }
         
+        // Document upload functionality
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadedFiles = document.getElementById('uploadedFiles');
+        const uploadForm = document.getElementById('uploadForm');
+        const clearUpload = document.getElementById('clearUpload');
+        
+        // Handle file selection
+        fileUploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileInput.addEventListener('change', handleFileSelect);
+        
+        // Handle drag and drop
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = var('--secondary-color');
+            fileUploadArea.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
+        });
+        
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.style.borderColor = '#ddd';
+            fileUploadArea.style.backgroundColor = 'transparent';
+        });
+        
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = '#ddd';
+            fileUploadArea.style.backgroundColor = 'transparent';
+            
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                handleFileSelect();
+            }
+        });
+        
+        function handleFileSelect() {
+            uploadedFiles.innerHTML = '';
+            
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const fileElement = document.createElement('div');
+                fileElement.className = 'uploaded-file';
+                fileElement.innerHTML = `
+                    <i class="fas fa-file"></i>
+                    <span>${file.name}</span>
+                    <span style="margin-left: auto; font-size: 0.8rem;">${(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                `;
+                uploadedFiles.appendChild(fileElement);
+            }
+        }
+        
+        // Clear upload
+        clearUpload.addEventListener('click', () => {
+            fileInput.value = '';
+            uploadedFiles.innerHTML = '';
+        });
+        
+        // Upload form submission
+        uploadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!fileInput.files.length) {
+                alert('Please select a file to upload.');
+                return;
+            }
+            
+            const title = document.getElementById('documentTitle').value;
+            alert(`Thank you for uploading "${title}"! Your document will be reviewed by our team before publishing.`);
+            this.reset();
+            uploadedFiles.innerHTML = '';
+        });
+        
         // Add story form submission
         const addStoryForm = document.getElementById('addStoryForm');
         
@@ -1555,7 +1854,7 @@
         }, observerOptions);
         
         // Observe elements for animation
-        document.querySelectorAll('.book-card, .featured-card').forEach(el => {
+        document.querySelectorAll('.book-card, .featured-card, .short-story-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';

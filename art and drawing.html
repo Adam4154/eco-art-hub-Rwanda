@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drawings - ECO ART RWANDA</title>
+    <title>Drawings & arts - ECO ART RWANDA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* All previous CSS remains the same */
         * {
             margin: 0;
             padding: 0;
@@ -147,7 +148,7 @@
 
         /* Page Header */
         .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=2058&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
             color: white;
             padding: 6rem 0;
             text-align: center;
@@ -297,7 +298,7 @@
 
         .drawing-image {
             height: 250px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background-color: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -496,6 +497,12 @@
             font-size: 4rem;
         }
 
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         .image-thumbnails {
             display: flex;
             gap: 10px;
@@ -512,6 +519,13 @@
             color: var(--primary-color);
             cursor: pointer;
             transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .thumbnail.active, .thumbnail:hover {
@@ -920,19 +934,19 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="programs.html">Programs</a></li>
-                    <li><a href="members.html">Members</a></li>
-                    <li><a href="books.html">Books & Stories</a></li>
-                    <li><a href="crafts.html">Crafts</a></li>
-                    <li><a href="drawings.html" class="active">Drawings</a></li>
-                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="our programs.html">Programs</a></li>
+                    <li><a href="our members.html">Members</a></li>
+                    <li><a href="books & stories.html">Books & Stories</a></li>
+                    <li><a href="craftz.html">Crafts</a></li>
+                    <li><a href="art and drawing.html" class="active">Drawings</a></li>
+                    <li><a href="our resources.html">Resources</a></li>
                 </ul>
                 
                 <div class="auth-buttons">
-                    <a href="login.html" class="btn btn-outline">
+                    <a href="login form.html" class="btn btn-outline">
                         <i class="fas fa-sign-in-alt"></i> Login
                     </a>
-                    <a href="register.html" class="btn btn-primary">
+                    <a href="login form.html" class="btn btn-primary">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </div>
@@ -1031,7 +1045,7 @@
                 <!-- Drawing 1 -->
                 <div class="drawing-card" data-category="wildlife" data-medium="pencil" data-price="85" data-size="medium">
                     <div class="drawing-image">
-                        <i class="fas fa-paw"></i>
+                        <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80" alt="Mountain Gorilla Portrait">
                         <div class="drawing-badge">Popular</div>
                         <div class="eco-badge">Eco-Friendly</div>
                     </div>
@@ -1069,7 +1083,7 @@
                 <!-- Drawing 2 -->
                 <div class="drawing-card" data-category="landscape" data-medium="watercolor" data-price="120" data-size="large">
                     <div class="drawing-image">
-                        <i class="fas fa-mountain"></i>
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Volcanoes at Sunrise">
                         <div class="drawing-badge">New</div>
                         <div class="eco-badge">Eco-Friendly</div>
                     </div>
@@ -1107,7 +1121,7 @@
                 <!-- Drawing 3 -->
                 <div class="drawing-card" data-category="cultural" data-medium="ink" data-price="65" data-size="medium">
                     <div class="drawing-image">
-                        <i class="fas fa-users"></i>
+                        <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Traditional Dance">
                         <div class="eco-badge">Cultural Heritage</div>
                     </div>
                     <div class="drawing-content">
@@ -1144,7 +1158,7 @@
                 <!-- Drawing 4 -->
                 <div class="drawing-card" data-category="portrait" data-medium="charcoal" data-price="95" data-size="large">
                     <div class="drawing-image">
-                        <i class="fas fa-user"></i>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Elder's Wisdom">
                         <div class="eco-badge">Eco-Friendly</div>
                     </div>
                     <div class="drawing-content">
@@ -1181,7 +1195,7 @@
                 <!-- Drawing 5 -->
                 <div class="drawing-card" data-category="abstract" data-medium="digital" data-price="75" data-size="medium">
                     <div class="drawing-image">
-                        <i class="fas fa-shapes"></i>
+                        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80" alt="Echoes of the Forest">
                         <div class="drawing-badge">Digital</div>
                         <div class="eco-badge">Eco-Friendly</div>
                     </div>
@@ -1219,7 +1233,7 @@
                 <!-- Drawing 6 -->
                 <div class="drawing-card" data-category="wildlife" data-medium="pencil" data-price="110" data-size="large">
                     <div class="drawing-image">
-                        <i class="fas fa-feather"></i>
+                        <img src="https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Crowned Crane">
                         <div class="eco-badge">Eco-Friendly</div>
                     </div>
                     <div class="drawing-content">
@@ -1267,7 +1281,7 @@
             <div class="artists-grid">
                 <div class="artist-card">
                     <div class="artist-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Mbarushimana Muhamadi">
                     </div>
                     <div class="artist-details">
                         <h3 class="artist-name">Mbarushimana Muhamadi</h3>
@@ -1294,7 +1308,7 @@
                 
                 <div class="artist-card">
                     <div class="artist-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="DUSABIMANA Ivan Landry">
                     </div>
                     <div class="artist-details">
                         <h3 class="artist-name">DUSABIMANA Ivan Landry</h3>
@@ -1321,7 +1335,7 @@
                 
                 <div class="artist-card">
                     <div class="artist-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Niyomugenga Salve">
                     </div>
                     <div class="artist-details">
                         <h3 class="artist-name">Niyomugenga Salve</h3>
@@ -1348,7 +1362,7 @@
                 
                 <div class="artist-card">
                     <div class="artist-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Bizimana Adam">
                     </div>
                     <div class="artist-details">
                         <h3 class="artist-name">Bizimana Adam</h3>
@@ -1472,7 +1486,7 @@
         <div class="container">
             <h2>Support Sustainable Art</h2>
             <p>By purchasing eco-friendly drawings, you're not only acquiring beautiful artwork but also supporting Rwandan artists and sustainable creative practices.</p>
-            <a href="register.html" class="btn btn-primary btn-large">
+            <a href="login form.html" class="btn btn-primary btn-large">
                 <i class="fas fa-user-plus"></i> Join Our Community
             </a>
         </div>
@@ -1506,9 +1520,9 @@
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="programs.html">Programs</a></li>
-                        <li><a href="members.html">Our Members</a></li>
-                        <li><a href="drawings.html">Drawings</a></li>
+                        <li><a href="our programs.html">Programs</a></li>
+                        <li><a href="our member.html">Our Members</a></li>
+                        <li><a href="art and drawing.html">Drawings</a></li>
                     </ul>
                 </div>
                 
@@ -1552,17 +1566,17 @@
             <div class="modal-body">
                 <div class="drawing-gallery">
                     <div class="main-image">
-                        <i class="fas fa-paw"></i>
+                        <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80" alt="Mountain Gorilla Portrait">
                     </div>
                     <div class="image-thumbnails">
                         <div class="thumbnail active">
-                            <i class="fas fa-paw"></i>
+                            <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80" alt="Mountain Gorilla Portrait">
                         </div>
                         <div class="thumbnail">
-                            <i class="fas fa-image"></i>
+                            <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80" alt="Mountain Gorilla Portrait Detail">
                         </div>
                         <div class="thumbnail">
-                            <i class="fas fa-image"></i>
+                            <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80" alt="Mountain Gorilla Portrait Frame">
                         </div>
                     </div>
                 </div>
@@ -1576,7 +1590,7 @@
                         <h4>Artist Information</h4>
                         <div class="artist-info">
                             <div class="artist-avatar">
-                                <i class="fas fa-user"></i>
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Mbarushimana Muhamadi">
                             </div>
                             <div class="artist-details">
                                 <h5>Mbarushimana Muhamadi</h5>
@@ -1771,16 +1785,98 @@
         const modalTitle = document.getElementById('modalTitle');
         const viewDrawingButtons = document.querySelectorAll('.view-drawing');
         
+        // Drawing data for modal content
+        const drawingData = {
+            gorilla: {
+                title: "Mountain Gorilla Portrait",
+                description: "This detailed pencil drawing captures the gentle expression and majestic presence of a mountain gorilla from the Virunga Mountains. Created using sustainable art practices, this piece highlights the beauty and vulnerability of these endangered primates.",
+                artist: "Mbarushimana Muhamadi",
+                artistBio: "Wildlife & Portrait Artist with 12 years of experience specializing in pencil drawings of Rwandan wildlife.",
+                materials: ["Graphite Pencils", "Recycled Paper", "Eco-Friendly Fixative"],
+                price: "$85.00",
+                dimensions: "18\" x 24\"",
+                medium: "Graphite Pencil on Paper",
+                frame: "Unframed (sustainable framing options available)",
+                year: "2023",
+                mainImage: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80",
+                thumbnails: [
+                    "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80",
+                    "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80",
+                    "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80"
+                ]
+            },
+            volcanoes: {
+                title: "Volcanoes at Sunrise",
+                description: "Watercolor painting capturing the majestic Virunga volcanoes at sunrise, with soft morning light illuminating the mist-covered peaks. This artwork celebrates the breathtaking landscapes of Rwanda's volcanic region.",
+                artist: "DUSABIMANA Ivan Landry",
+                artistBio: "Digital & Landscape Artist with 8 years of experience specializing in watercolor and digital landscapes.",
+                materials: ["Watercolor Paints", "Recycled Watercolor Paper", "Eco-Friendly Brushes"],
+                price: "$120.00",
+                dimensions: "24\" x 36\"",
+                medium: "Watercolor on Paper",
+                frame: "Unframed",
+                year: "2023",
+                mainImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                thumbnails: [
+                    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                ]
+            }
+            // Add more drawing data objects for other artworks
+        };
+        
         // Open drawing modal
         viewDrawingButtons.forEach(button => {
             button.addEventListener('click', function() {
-                const drawingCard = this.closest('.drawing-card');
-                const title = drawingCard.querySelector('.drawing-title').textContent;
-                const artist = drawingCard.querySelector('.drawing-artist').textContent;
-                const price = drawingCard.querySelector('.drawing-price').textContent;
+                const drawingId = this.getAttribute('data-drawing');
+                const drawing = drawingData[drawingId];
                 
-                modalTitle.textContent = title;
-                drawingModal.classList.add('active');
+                if (drawing) {
+                    modalTitle.textContent = drawing.title;
+                    
+                    // Update modal content with drawing data
+                    document.querySelector('.main-image img').src = drawing.mainImage;
+                    document.querySelector('.main-image img').alt = drawing.title;
+                    
+                    // Update thumbnails
+                    const thumbnailsContainer = document.querySelector('.image-thumbnails');
+                    thumbnailsContainer.innerHTML = '';
+                    
+                    drawing.thumbnails.forEach((thumb, index) => {
+                        const thumbnail = document.createElement('div');
+                        thumbnail.className = index === 0 ? 'thumbnail active' : 'thumbnail';
+                        thumbnail.innerHTML = `<img src="${thumb}" alt="${drawing.title}">`;
+                        thumbnailsContainer.appendChild(thumbnail);
+                    });
+                    
+                    // Update other details
+                    document.querySelector('.detail-section:nth-child(1) p').textContent = drawing.description;
+                    document.querySelector('.artist-details h5').textContent = drawing.artist;
+                    document.querySelector('.artist-details p').textContent = drawing.artistBio;
+                    
+                    // Update materials
+                    const materialsList = document.querySelector('.materials-list');
+                    materialsList.innerHTML = '';
+                    drawing.materials.forEach(material => {
+                        const materialTag = document.createElement('span');
+                        materialTag.className = 'material-tag';
+                        materialTag.textContent = material;
+                        materialsList.appendChild(materialTag);
+                    });
+                    
+                    // Update specifications
+                    document.querySelector('.detail-section:nth-child(5) p').innerHTML = 
+                        `<strong>Dimensions:</strong> ${drawing.dimensions}<br>
+                         <strong>Medium:</strong> ${drawing.medium}<br>
+                         <strong>Frame:</strong> ${drawing.frame}<br>
+                         <strong>Year Created:</strong> ${drawing.year}`;
+                    
+                    // Update price
+                    document.querySelector('.drawing-price').textContent = drawing.price;
+                    
+                    drawingModal.classList.add('active');
+                }
             });
         });
         
@@ -1808,19 +1904,21 @@
         });
         
         // Thumbnail selection
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const mainImage = document.querySelector('.main-image');
-        
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', function() {
-                thumbnails.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.thumbnail')) {
+                const thumbnail = e.target.closest('.thumbnail');
+                const thumbnails = document.querySelectorAll('.thumbnail');
+                const mainImage = document.querySelector('.main-image img');
                 
-                // In a real application, this would change the main image
-                // For this demo, we'll just change the icon
-                const icon = this.querySelector('i').className;
-                mainImage.innerHTML = `<i class="${icon}"></i>`;
-            });
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumbnail.classList.add('active');
+                
+                // Update main image with thumbnail image
+                const thumbnailImg = thumbnail.querySelector('img');
+                if (thumbnailImg) {
+                    mainImage.src = thumbnailImg.src;
+                }
+            }
         });
         
         // Add animation on scroll
